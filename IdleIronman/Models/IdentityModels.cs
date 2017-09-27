@@ -22,7 +22,7 @@ namespace IdleIronman.Models
     {
         public DbSet<ExerciseModel> ExerciseModels { get; set; }
 
-        //public DbSet<IronManRuleModels> IronManRules { get; set; }
+        public DbSet<IronManRuleModels> IronManRules { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
