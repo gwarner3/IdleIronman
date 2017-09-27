@@ -193,11 +193,14 @@
     <Compile Include="Migrations\201709271544341_AddedConstructorToIronManRuleModels.Designer.cs">
       <DependentUpon>201709271544341_AddedConstructorToIronManRuleModels.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709271603165_RemovedIronManRuleTable.cs" />
+    <Compile Include="Migrations\201709271603165_RemovedIronManRuleTable.Designer.cs">
+      <DependentUpon>201709271603165_RemovedIronManRuleTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ExerciseModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\IronManRuleModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -284,6 +287,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709271544341_AddedConstructorToIronManRuleModels.resx">
       <DependentUpon>201709271544341_AddedConstructorToIronManRuleModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709271603165_RemovedIronManRuleTable.resx">
+      <DependentUpon>201709271603165_RemovedIronManRuleTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
