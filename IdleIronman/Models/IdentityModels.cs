@@ -24,6 +24,8 @@ namespace IdleIronman.Models
 
         public DbSet<IronManRuleModels> IronManRules { get; set; }
 
+        public DbSet<TeamModels> Teams { get; set; }
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
