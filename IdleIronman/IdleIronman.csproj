@@ -201,9 +201,12 @@
     <Compile Include="Migrations\201709271628129_AddedIronManRuleModel.Designer.cs">
       <DependentUpon>201709271628129_AddedIronManRuleModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709271635375_RemovedExerciseTypeModel.cs" />
+    <Compile Include="Migrations\201709271635375_RemovedExerciseTypeModel.Designer.cs">
+      <DependentUpon>201709271635375_RemovedExerciseTypeModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\ExerciseModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\IronManRuleModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -298,6 +301,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709271628129_AddedIronManRuleModel.resx">
       <DependentUpon>201709271628129_AddedIronManRuleModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709271635375_RemovedExerciseTypeModel.resx">
+      <DependentUpon>201709271635375_RemovedExerciseTypeModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

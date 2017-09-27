@@ -20,7 +20,7 @@ namespace IdleIronman.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public DbSet<ExerciseModel> ExerciseModels { get; set; }
+        //public DbSet<ExerciseModel> ExerciseModels { get; set; }
 
         public DbSet<IronManRuleModels> IronManRules { get; set; }
 
