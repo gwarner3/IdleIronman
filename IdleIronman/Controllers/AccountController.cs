@@ -157,10 +157,16 @@ namespace IdleIronman.Controllers
                 if (result.Succeeded)
                 {
                     //Temp Code to add Administrative user role
+                    //var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
+                    //var roleManager = new RoleManager<IdentityRole>(roleStore);
+                    //await roleManager.CreateAsync(new IdentityRole("CanManageAllData"));
+                    //await UserManager.AddToRoleAsync(user.Id, "CanManageAllData");
+
+                    //Temp Code to add Team Captain user
                     var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
                     var roleManager = new RoleManager<IdentityRole>(roleStore);
-                    await roleManager.CreateAsync(new IdentityRole("CanManageAllData"));
-                    await UserManager.AddToRoleAsync(user.Id, "CanManageAllData");
+                    await roleManager.CreateAsync(new IdentityRole("CanManageTeamData"));
+                    await UserManager.AddToRoleAsync(user.Id, "CanManageTeamData");
 
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
