@@ -219,6 +219,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ActivityLogModels.cs" />
     <Compile Include="Models\ExerciseTypeModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\IronManRuleModels.cs" />
