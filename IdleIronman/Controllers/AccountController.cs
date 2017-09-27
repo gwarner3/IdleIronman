@@ -163,10 +163,16 @@ namespace IdleIronman.Controllers
                     //await UserManager.AddToRoleAsync(user.Id, "CanManageAllData");
 
                     //Temp Code to add Team Captain user
+                    //var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
+                    //var roleManager = new RoleManager<IdentityRole>(roleStore);
+                    //await roleManager.CreateAsync(new IdentityRole("CanManageTeamData"));
+                    //await UserManager.AddToRoleAsync(user.Id, "CanManageTeamData");
+
+                    //Temp Code to add Participant user
                     var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
                     var roleManager = new RoleManager<IdentityRole>(roleStore);
-                    await roleManager.CreateAsync(new IdentityRole("CanManageTeamData"));
-                    await UserManager.AddToRoleAsync(user.Id, "CanManageTeamData");
+                    await roleManager.CreateAsync(new IdentityRole("CanManagePersonalData"));
+                    await UserManager.AddToRoleAsync(user.Id, "CanManagePersonalData");
 
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
