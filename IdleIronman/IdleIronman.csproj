@@ -228,6 +228,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\IronManRuleModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\TeamApplicationModels.cs" />
     <Compile Include="Models\TeamModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />

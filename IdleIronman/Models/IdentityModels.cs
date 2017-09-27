@@ -28,6 +28,8 @@ namespace IdleIronman.Models
 
         public DbSet<ActivityLogModels> ActivityLogs { get; set; }
 
+        public DbSet<TeamApplicationModels> TeamApplications { get; set; }
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
