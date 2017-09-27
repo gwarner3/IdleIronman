@@ -24,5 +24,12 @@ namespace IdleIronman.Models
 
         [Display(Name = "Run Distance")]
         public double RunDistanceInMiles { get; set; }
+
+        public IronManRuleModels()
+        {
+            SwimDistanceInMiles = 2.4;
+            BikeDistancenIMiles = 112;
+            RunDistanceInMiles = 26.2;
+        }
     }
 }
