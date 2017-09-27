@@ -229,6 +229,10 @@
     <Compile Include="Migrations\201709272047595_SeedUsers.Designer.cs">
       <DependentUpon>201709272047595_SeedUsers.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709272134188_AddedFirstNamePropertyToApplicationUser.cs" />
+    <Compile Include="Migrations\201709272134188_AddedFirstNamePropertyToApplicationUser.Designer.cs">
+      <DependentUpon>201709272134188_AddedFirstNamePropertyToApplicationUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ActivityLogModels.cs" />
@@ -351,6 +355,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709272047595_SeedUsers.resx">
       <DependentUpon>201709272047595_SeedUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709272134188_AddedFirstNamePropertyToApplicationUser.resx">
+      <DependentUpon>201709272134188_AddedFirstNamePropertyToApplicationUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
