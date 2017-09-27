@@ -221,6 +221,10 @@
     <Compile Include="Migrations\201709271944518_AddedActivityLogModelsDbSet.Designer.cs">
       <DependentUpon>201709271944518_AddedActivityLogModelsDbSet.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709272034475_AddedTeamApplicationModels.cs" />
+    <Compile Include="Migrations\201709272034475_AddedTeamApplicationModels.Designer.cs">
+      <DependentUpon>201709272034475_AddedTeamApplicationModels.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ActivityLogModels.cs" />
@@ -336,6 +340,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709271944518_AddedActivityLogModelsDbSet.resx">
       <DependentUpon>201709271944518_AddedActivityLogModelsDbSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709272034475_AddedTeamApplicationModels.resx">
+      <DependentUpon>201709272034475_AddedTeamApplicationModels.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
