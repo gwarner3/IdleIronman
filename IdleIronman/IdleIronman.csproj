@@ -205,8 +205,17 @@
     <Compile Include="Migrations\201709271635375_RemovedExerciseTypeModel.Designer.cs">
       <DependentUpon>201709271635375_RemovedExerciseTypeModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709271639164_Added ExerciseTypeModels.cs" />
+    <Compile Include="Migrations\201709271639164_Added ExerciseTypeModels.Designer.cs">
+      <DependentUpon>201709271639164_Added ExerciseTypeModels.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709271640275_PopulateExerciseTypes.cs" />
+    <Compile Include="Migrations\201709271640275_PopulateExerciseTypes.Designer.cs">
+      <DependentUpon>201709271640275_PopulateExerciseTypes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ExerciseTypeModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\IronManRuleModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -304,6 +313,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709271635375_RemovedExerciseTypeModel.resx">
       <DependentUpon>201709271635375_RemovedExerciseTypeModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709271639164_Added ExerciseTypeModels.resx">
+      <DependentUpon>201709271639164_Added ExerciseTypeModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709271640275_PopulateExerciseTypes.resx">
+      <DependentUpon>201709271640275_PopulateExerciseTypes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
