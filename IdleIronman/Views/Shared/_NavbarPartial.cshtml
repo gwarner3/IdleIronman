@@ -1,0 +1,24 @@
+﻿@using Microsoft.AspNet.Identity
+@if (!Request.IsAuthenticated)
+{
+    <ul class="nav navbar-nav">
+        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+        <li>@Html.ActionLink("Rules", "About", "Home")</li>
+        @*<li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
+    </ul>
+    @Html.Partial("_LoginPartial") 
+}
+
+@if (User.IsInRole("CanManagePersonalData"))
+{
+    var userId = User.Identity.GetUserId();
+    <ul class="nav navbar-nav">
+        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+        <li>@Html.ActionLink("Rules", "About", "Home")</li>
+        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+    </ul>
+    @Html.Partial("_LoginPartial")
+}
+
+
+
