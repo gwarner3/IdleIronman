@@ -185,6 +185,10 @@
     <Compile Include="Migrations\201709271458366_PopulateExereciseType.Designer.cs">
       <DependentUpon>201709271458366_PopulateExereciseType.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709271535415_AddedIronManRulesToDbSet.cs" />
+    <Compile Include="Migrations\201709271535415_AddedIronManRulesToDbSet.Designer.cs">
+      <DependentUpon>201709271535415_AddedIronManRulesToDbSet.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ExerciseModel.cs" />
@@ -270,6 +274,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709271458366_PopulateExereciseType.resx">
       <DependentUpon>201709271458366_PopulateExereciseType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709271535415_AddedIronManRulesToDbSet.resx">
+      <DependentUpon>201709271535415_AddedIronManRulesToDbSet.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
