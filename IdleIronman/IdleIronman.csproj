@@ -177,6 +177,10 @@
     <Compile Include="Migrations\201709261922051_InitialMigration.Designer.cs">
       <DependentUpon>201709261922051_InitialMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709271442462_AddedExerciseModel.cs" />
+    <Compile Include="Migrations\201709271442462_AddedExerciseModel.Designer.cs">
+      <DependentUpon>201709271442462_AddedExerciseModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ExerciseModel.cs" />
@@ -255,6 +259,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201709261922051_InitialMigration.resx">
       <DependentUpon>201709261922051_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709271442462_AddedExerciseModel.resx">
+      <DependentUpon>201709271442462_AddedExerciseModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
