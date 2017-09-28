@@ -16,14 +16,18 @@ namespace IdleIronman.Models
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
 
+        [Required]
+        [StringLength(50)]
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
+
+        [Required]
+        [RegularExpression(@"^(\d{5})$", ErrorMessage = "Five numbers only")]
+        public int? Zip { get; set; }
+
         public TeamModels TeamModels { get; set; }
 
         public int? TeamModelsId { get; set; }
-
-        [Required]
-        [Display(Name = "Team Name")]
-        public string TeamName { get; set; }
-
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
