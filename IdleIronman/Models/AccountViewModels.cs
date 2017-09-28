@@ -69,6 +69,19 @@ namespace IdleIronman.Models
         public string FirstName { get; set; }
 
         [Required]
+        [StringLength(50)]
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
+
+        [Required]
+        [Display(Name = "Team Name")]
+        public string TeamName { get; set; }
+
+        [Required]
+        [RegularExpression(@"^(\d{5})$", ErrorMessage = "Five numbers only")]
+        public int? Zip { get; set; }
+
+        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
