@@ -21,7 +21,22 @@ namespace IdleIronman.Controllers
         // GET: Participant
         public ActionResult Index()
         {
-            return View();
+            var participantStatViewModel = new ParticpantStatsViewModel();
+            var currentUserId = User.Identity.GetUserId();
+
+            //must figure out way to remove magic int 3
+            var totalSwimDistance = (from participant in _context.ActivityLogs
+                where participant.ExerciseTypeModelsId == 3 &&
+                participant.ApplicationUserId == currentUserId
+                select participant.Distance).Sum();
+
+            if (totalSwimDistance != null)
+            {
+                participantStatViewModel.ParticipantTotalSwimDistance = (double)totalSwimDistance;
+            }
+                                    
+
+            return View(participantStatViewModel);
         }
 
         //GET: LogActivity
