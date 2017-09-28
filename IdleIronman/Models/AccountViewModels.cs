@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace IdleIronman.Models
@@ -80,6 +81,13 @@ namespace IdleIronman.Models
         [Required]
         [RegularExpression(@"^(\d{5})$", ErrorMessage = "Five numbers only")]
         public int? Zip { get; set; }
+
+        [Required]
+        [Display(Name = "Start Date")]
+        public DateTime? StartDate { get; set; }
+
+        [Required]
+        public int? Duration { get; set; }
 
         [Required]
         [EmailAddress]
