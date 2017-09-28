@@ -155,19 +155,33 @@ namespace IdleIronman.Controllers
             if (ModelState.IsValid)
             {
 
+                //creatr IronManRules for this user
+                var ironManRules = new IronManRuleModels
+                {
+                    StartDate = model.StartDate,
+                    DurationInDays = model.Duration
+                };
+                _context.IronManRules.Add(ironManRules);
+                _context.SaveChanges();
+
                 //take the name from the model.string field and save it in the TeamModels table
                 var team = new TeamModels
                 {
-                    Name = model.TeamName
+                    Name = model.TeamName,
+                    IronManRuleModelsId = ironManRules.Id
                 };
                 _context.Teams.Add(team);
+                _context.SaveChanges();
                 //get the Id from the newly created Team and save it in the AspNetUsers Table
 
                 var user = new ApplicationUser
                 {
                     UserName = model.Email,
                     Email = model.Email,
-                    FirstName = model.FirstName
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    Zip = model.Zip,
+                    TeamModelsId = team.Id
                 };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
@@ -189,6 +203,9 @@ namespace IdleIronman.Controllers
                     //var roleManager = new RoleManager<IdentityRole>(roleStore);
                     //await roleManager.CreateAsync(new IdentityRole("CanManagePersonalData"));
                     //await UserManager.AddToRoleAsync(user.Id, "CanManagePersonalData");
+
+                    //Making every new user a Participant
+                    await UserManager.AddToRoleAsync(user.Id, "CanManagePersonalData");
 
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     

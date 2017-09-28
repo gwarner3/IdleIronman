@@ -84,10 +84,10 @@ namespace IdleIronman.Models
 
         [Required]
         [Display(Name = "Start Date")]
-        public DateTime? StartDate { get; set; }
+        public DateTime StartDate { get; set; }
 
         [Required]
-        public int? Duration { get; set; }
+        public int Duration { get; set; }
 
         [Required]
         [EmailAddress]
