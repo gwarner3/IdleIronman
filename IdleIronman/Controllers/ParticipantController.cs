@@ -55,11 +55,11 @@ namespace IdleIronman.Controllers
                 ApplicationUserId = appUserId
             };
 
-            //_context.ActivityLogs.Add(activityLog);
-            //_context.SaveChanges();
+            _context.ActivityLogs.Add(activityLog);
+            _context.SaveChanges();
 
-            //var exerciseTypes = _context.ExerciseTypes.ToList();
-            //activityViewModel.ExerciseType =  exerciseTypes;
+            var exerciseTypes = _context.ExerciseTypes.ToList();
+            activityViewModel.ExerciseType = exerciseTypes;
 
             return RedirectToAction("LogActivity", "Participant");
         }
