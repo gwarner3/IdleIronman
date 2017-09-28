@@ -5,6 +5,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -82,6 +83,21 @@ namespace IdleIronman.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    //if (Roles.IsUserInRole("CanManagePersonalData"))
+                    //{
+                    //    return RedirectToAction("Index", "Participant");
+                    //}
+                    //if (_userManager.IsInRole("CanManagePersonalData"))
+
+                    //var currentUser = User;
+                    //var userId = User.Identity.GetUserId();
+                    //var currentUserRole = _userManager.GetRoles(userId).First();
+
+                    //if (currentUserRole == "CanManagePersonalData")
+                    //{
+                    //    return RedirectToAction("Index", "Participant");
+                    //}
+
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -205,7 +221,7 @@ namespace IdleIronman.Controllers
                     //await UserManager.AddToRoleAsync(user.Id, "CanManagePersonalData");
 
                     //Making every new user a Participant
-                    await UserManager.AddToRoleAsync(user.Id, "CanManagePersonalData");
+                    await UserManager.AddToRoleAsync(user.Id, "CanManageTeamData");
 
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
@@ -406,10 +422,10 @@ namespace IdleIronman.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ExternalLoginConfirmation(ExternalLoginConfirmationViewModel model, string returnUrl)
         {
-            if (User.Identity.IsAuthenticated)
-            {
-                return RedirectToAction("Index", "Manage");
-            }
+            //if (User.Identity.IsAuthenticated)
+            //{
+            //    return RedirectToAction("Index", "Manage");
+            //}
 
             if (ModelState.IsValid)
             {
@@ -471,7 +487,6 @@ namespace IdleIronman.Controllers
                     _signInManager = null;
                 }
             }
-
             base.Dispose(disposing);
         }
 
@@ -497,11 +512,26 @@ namespace IdleIronman.Controllers
 
         private ActionResult RedirectToLocal(string returnUrl)
         {
+            //if (Roles.IsUserInRole("CanManagePersonalData"))
+            //{
+            //    return RedirectToAction("Index", "Participant");
+            //}
+
+            //var currentUser = User;
+            //var userId = currentUser.Identity.GetUserId();
+            //var currentUserRole = _userManager.GetRoles(userId).First();
+
+            //if (currentUserRole == "CanManagePersonalData")
+            //{
+            //    return RedirectToAction("Index", "Participant");
+            //}
+
             if (Url.IsLocalUrl(returnUrl))
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Home");
+            
+            return RedirectToAction("Index", "Roles");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult
