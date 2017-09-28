@@ -8,7 +8,7 @@ namespace IdleIronman.ViewModels
 {
     public class ParticpantStatsViewModel
     {
-        public ActivityLogModels ActivityLog { get; set; }
+        public IEnumerable<ActivityLogModels> ActivityLogModels { get; set; }
 
         public ApplicationUser ApplicationUser { get; set; }
 
@@ -20,6 +20,8 @@ namespace IdleIronman.ViewModels
 
         public double ParticipantTotalBikedDistance { get; set; }
 
-        public DateTime DaysUntilEnd { get; set; }
+        public double DaysUntilEnd { get; set; }
+
+
     }
 }
