@@ -18,9 +18,11 @@ namespace IdleIronman.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private ApplicationDbContext _context;
 
         public AccountController()
         {
+            _context = new ApplicationDbContext();
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
@@ -152,6 +154,15 @@ namespace IdleIronman.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                //take the name from the model.string field and save it in the TeamModels table
+                var team = new TeamModels
+                {
+                    Name = model.TeamName
+                };
+                _context.Teams.Add(team);
+                //get the Id from the newly created Team and save it in the AspNetUsers Table
+
                 var user = new ApplicationUser
                 {
                     UserName = model.Email,

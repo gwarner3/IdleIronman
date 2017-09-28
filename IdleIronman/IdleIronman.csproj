@@ -241,6 +241,10 @@
     <Compile Include="Migrations\201709280023517_AddedTeamNameToIdentityModels.Designer.cs">
       <DependentUpon>201709280023517_AddedTeamNameToIdentityModels.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709280031362_RemovedTeamNameColumnFromIdentityModels.cs" />
+    <Compile Include="Migrations\201709280031362_RemovedTeamNameColumnFromIdentityModels.Designer.cs">
+      <DependentUpon>201709280031362_RemovedTeamNameColumnFromIdentityModels.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ActivityLogModels.cs" />
@@ -372,6 +376,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709280023517_AddedTeamNameToIdentityModels.resx">
       <DependentUpon>201709280023517_AddedTeamNameToIdentityModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709280031362_RemovedTeamNameColumnFromIdentityModels.resx">
+      <DependentUpon>201709280031362_RemovedTeamNameColumnFromIdentityModels.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
