@@ -237,6 +237,10 @@
     <Compile Include="Migrations\201709280005386_AddedTeamModelsToIdentityModels.Designer.cs">
       <DependentUpon>201709280005386_AddedTeamModelsToIdentityModels.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709280023517_AddedTeamNameToIdentityModels.cs" />
+    <Compile Include="Migrations\201709280023517_AddedTeamNameToIdentityModels.Designer.cs">
+      <DependentUpon>201709280023517_AddedTeamNameToIdentityModels.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ActivityLogModels.cs" />
@@ -365,6 +369,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709280005386_AddedTeamModelsToIdentityModels.resx">
       <DependentUpon>201709280005386_AddedTeamModelsToIdentityModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709280023517_AddedTeamNameToIdentityModels.resx">
+      <DependentUpon>201709280023517_AddedTeamNameToIdentityModels.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

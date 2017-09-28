@@ -17,7 +17,12 @@ namespace IdleIronman.Models
         public string FirstName { get; set; }
 
         public TeamModels TeamModels { get; set; }
+
         public int? TeamModelsId { get; set; }
+
+        [Required]
+        [Display(Name = "Team Name")]
+        public string TeamName { get; set; }
 
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
