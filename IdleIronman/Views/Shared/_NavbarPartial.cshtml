@@ -13,12 +13,22 @@
 {
     var userId = User.Identity.GetUserId();
     <ul class="nav navbar-nav">
-        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+        <li>@Html.ActionLink("Participant Home", "Index", "Participant")</li>
+        <li>@Html.ActionLink("Log Activity", "LogActivity", "Participant")</li>
         <li>@Html.ActionLink("Rules", "About", "Home")</li>
         <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
     </ul>
     @Html.Partial("_LoginPartial")
 }
 
-
+@if (User.IsInRole("CanManageTeamData"))
+{
+    var userId = User.Identity.GetUserId();
+    <ul class="nav navbar-nav">
+        <li>@Html.ActionLink("Participant Home", "Index", "Participant")</li>
+        <li>@Html.ActionLink("Rules", "About", "Home")</li>
+        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+    </ul>
+    @Html.Partial("_LoginPartial")
+}
 
