@@ -5,6 +5,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Collections.Generic;
 
 namespace IdleIronman.Models
 {
@@ -28,6 +29,9 @@ namespace IdleIronman.Models
         public TeamModels TeamModels { get; set; }
 
         public int? TeamModelsId { get; set; }
+
+        public ICollection<ActivityLogModels> ActivityLog { get; set; }
+
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
