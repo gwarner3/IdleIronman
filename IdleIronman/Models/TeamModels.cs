@@ -21,5 +21,8 @@ namespace IdleIronman.Models
         public IronManRuleModels IronManRuleModels { get; set; }
 
         public int IronManRuleModelsId { get; set; }
+
+        public ICollection<ApplicationUser> Teammates { get; set; }
+
     }
 }
