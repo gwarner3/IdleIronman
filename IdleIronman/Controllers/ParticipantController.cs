@@ -14,6 +14,7 @@ namespace IdleIronman.Controllers
     public class ParticipantController : Controller
     {
         private ApplicationDbContext _context;
+        private ApplicationUser currentUser;
         private int swimId;
         private int bikeId;
         private int runId;
@@ -22,6 +23,7 @@ namespace IdleIronman.Controllers
         public ParticipantController()
         {
             _context = new ApplicationDbContext();
+            currentUser = new ApplicationUser();
             swimId = 3;
             bikeId = 2;
             runId = 1;
@@ -33,9 +35,18 @@ namespace IdleIronman.Controllers
         {
             var participantStatViewModel = new ParticpantStatsViewModel();
             var currentUserId = User.Identity.GetUserId();
+
             
             //grabbing the current user
-            ApplicationUser currentUser = _context.Users.Single(u => u.Id == currentUserId);
+            try
+            {
+                currentUser = _context.Users.Single(u => u.Id == currentUserId);
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("Index", "Home");
+                throw;
+            }
 
             
             //must figure out way to remove magic int 3
@@ -109,7 +120,7 @@ namespace IdleIronman.Controllers
 
             var activityViewModel = new ActivityLogViewModel
             {
-                ExerciseType = exerciseTypes
+                ExerciseType = exerciseTypes,
             };
 
             return View(activityViewModel);
@@ -146,10 +157,55 @@ namespace IdleIronman.Controllers
                 ApplicationUserId = appUserId
             };
 
-            _context.ActivityLogs.Add(activityLog);
+            var actvityLogIdTest = activityViewModel.ActivityLog.Id;
+            var actvityLogIdTest2 = activityLog.Id;
+
+
+            if (activityViewModel.ActivityLog.Id == 0)
+            {
+                _context.ActivityLogs.Add(activityLog);
+            }
+            else
+            {
+                var activityInLog = _context.ActivityLogs.Single(currentActivity => currentActivity.Id == activityViewModel.ActivityLog.Id);
+                activityInLog.ActivityDate = activityLog.ActivityDate;
+                activityInLog.Distance = activityLog.Distance;
+                activityInLog.DurationInMinutes = activityLog.DurationInMinutes;
+                activityInLog.ExerciseTypeModelsId = activityLog.ExerciseTypeModelsId;
+            }
+            
             _context.SaveChanges();
 
             return RedirectToAction("LogActivity", "Participant");
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var activityLog = _context.ActivityLogs.SingleOrDefault(u => u.Id == id);
+            if (activityLog == null)
+            {
+                return HttpNotFound();
+            }
+
+            string appUserId = User.Identity.GetUserId();
+
+            var activityLogViewModel = new ActivityLogViewModel
+            {
+                ApplicationUser = _context.Users.Single(u => u.Id == appUserId),
+                ExerciseType = _context.ExerciseTypes.ToList(),
+                ActivityLog = activityLog
+            };
+
+            return View("LogActivity", activityLogViewModel);
+        }
+
+        public ActionResult Delete(int id)
+        {
+            ActivityLogModels logToDelete = _context.ActivityLogs.First(deleteLog => deleteLog.Id == id);
+            _context.ActivityLogs.Remove(logToDelete);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Participant");
         }
     }
 }
