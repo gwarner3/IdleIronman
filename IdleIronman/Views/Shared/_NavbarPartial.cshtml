@@ -16,6 +16,7 @@
     <ul class="nav navbar-nav">
         <li>@Html.ActionLink("Participant Home", "Index", "Participant")</li>
         <li>@Html.ActionLink("Log Activity", "LogActivity", "Participant")</li>
+        <li>@Html.ActionLink("All IIM Stats", "Index", "Participant")</li>
         <li>@Html.ActionLink("Rules", "About", "Home")</li>
         <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
     </ul>
@@ -26,7 +27,9 @@
 {
     var userId = User.Identity.GetUserId();
     <ul class="nav navbar-nav">
-        <li>@Html.ActionLink("Team Captain Home", "Index", "Participant")</li>
+        <li>@Html.ActionLink("My Stats", "Index", "Participant")</li>
+        <li>@Html.ActionLink("Team Stats", "Index", "Participant")</li>
+        <li>@Html.ActionLink("Log Activity", "LogActivity", "Participant")</li>
         <li>@Html.ActionLink("Rules", "About", "Home")</li>
         <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
     </ul>
