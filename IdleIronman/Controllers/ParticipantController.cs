@@ -103,11 +103,16 @@ namespace IdleIronman.Controllers
                 participantStatViewModel.DaysUntilEnd = 0;
             }
 
-            var usersLog = from log in _context.ActivityLogs
+            var usersLog = (from log in _context.ActivityLogs
                 where log.ApplicationUserId == currentUserId
-                select log;
+                select log).Include(x => x.ExerciseTypeModels);
 
             participantStatViewModel.ActivityLogModels = usersLog;
+
+            var exerciseTypes = from item in _context.ExerciseTypes
+                select item;
+
+            participantStatViewModel.ExerciseType = exerciseTypes;
 
 
             return View(participantStatViewModel);
@@ -206,6 +211,11 @@ namespace IdleIronman.Controllers
             _context.SaveChanges();
 
             return RedirectToAction("Index", "Participant");
+        }
+
+        public ActionResult AllParticipantStats()
+        {
+            return View();
         }
     }
 }

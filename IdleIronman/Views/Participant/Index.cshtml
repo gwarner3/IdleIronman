@@ -34,10 +34,16 @@
     {
         <tr>
             <td>
-                @log.ActivityDate
+                @log.ActivityDate.ToShortDateString()
             </td>
             <td>
-                @log.ExerciseTypeModelsId
+                @log.ExerciseTypeModels.Name
+
+                @*@Model.ExerciseType.Where(e => e.Id == log.ExerciseTypeModelsId).Select(e => e.Name)
+
+                @Model.ActivityLogModels.Where(e=>e.ExerciseTypeModelsId == log.ExerciseTypeModelsId).Select(e=>e.ExerciseTypeModels.Name);*@
+               
+                @*@log.ExerciseTypeModels.Name*@
             </td>
             <td>
                 @log.Distance
