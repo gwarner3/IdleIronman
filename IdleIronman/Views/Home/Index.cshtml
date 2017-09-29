@@ -1,11 +1,55 @@
-﻿@{
+﻿@model IdleIronman.ViewModels.AllStatsViewModel
+@{
     ViewBag.Title = "Home Page";
 }
 
 <div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
+    <h1>General Rules</h1>
+    <p class="lead">Idle Iron Man rules summarized here</p>
     <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+</div>
+
+<div class="row">
+    <table class="table">
+        <tr>
+            <th>
+                Team Name and Photo
+            </th>
+            <th>
+                Days Left
+            </th>
+            <th>
+                Progress
+            </th>
+            <th>
+                Members
+            </th>
+            <th>
+                Links
+            </th>
+        </tr>
+        @foreach (var item in Model.Teams)
+        {
+            <tr>
+                <td>
+                    @item.Name<br/>
+                    <img src="~/Content/Images/@item.LinkToPhoto" />
+                </td>
+                <td>
+                   Days Left
+                </td>
+                <td>
+                    Progress
+                </td>
+                <td>
+                    Members
+                </td>
+                <td>
+                    Links
+                </td>
+            </tr>
+        }
+    </table>
 </div>
 
 <div class="row">
