@@ -10,6 +10,8 @@ namespace IdleIronman.ViewModels
     {
         public IEnumerable<ActivityLogModels> ActivityLogModels { get; set; }
 
+        public IEnumerable<ExerciseTypeModels> ExerciseType { get; set; }
+
         public ApplicationUser ApplicationUser { get; set; }
 
         public IronManRuleModels IronManRules { get; set; }
