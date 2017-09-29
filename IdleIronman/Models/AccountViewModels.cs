@@ -65,6 +65,12 @@ namespace IdleIronman.Models
 
     public class RegisterViewModel
     {
+        public RegisterViewModel()
+        {
+            Duration = 30;
+            StartDate = DateTime.Today.Date;
+        }
+
         [Required]
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
