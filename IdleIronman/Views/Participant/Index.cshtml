@@ -1,0 +1,61 @@
+﻿@model IdleIronman.ViewModels.ParticpantStatsViewModel
+@{
+    ViewBag.Title = "Latest Stats";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Participant Index</h2>
+
+<p>Swam: @Model.ParticipantTotalSwimDistance.ToString("0.00") miles</p>
+
+<p>Biked: @Model.ParticipantTotalBikedDistance miles</p>
+
+<p>Ran: @Model.ParticipantTotalRunDistance miles</p>
+
+<p>Days remaining: @Model.DaysUntilEnd </p>
+
+<h3>Logged Exercises</h3>
+<table class="table">
+    <tr>
+        <th>
+            Date
+        </th>
+        <th>
+            Exercise
+        </th>
+        <th>
+            Distance
+        </th>
+        <th>
+            Make Changes
+        </th>
+    </tr>
+    @foreach (var log in Model.ActivityLogModels)
+    {
+        <tr>
+            <td>
+                @log.ActivityDate
+            </td>
+            <td>
+                @log.ExerciseTypeModelsId
+            </td>
+            <td>
+                @log.Distance
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", "Participant", new {id = log.Id}, null) | 
+                @Html.ActionLink("Delete", "Delete", "Participant", new {id = log.Id}, null)
+            </td>
+        </tr>
+    }
+</table>
+
+
+
+
+  
+                    @*@Html.ActionLink("Edit", "Edit", new { id=item.Id }) |*@
+    @*@Html.ActionLink("Update Info", "UpdatePickUpDay", new { id = item.Id }) |
+    @Html.ActionLink("Details", "Details", new { id = item.Id }) |*@
+    @*@Html.ActionLink("Delete", "Delete", new { id=item.Id })*@
+  
