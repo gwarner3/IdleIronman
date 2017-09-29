@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using IdleIronman.Helpers;
 using IdleIronman.Models;
 using IdleIronman.ViewModels;
 using Microsoft.AspNet.Identity;
@@ -12,10 +14,18 @@ namespace IdleIronman.Controllers
     public class ParticipantController : Controller
     {
         private ApplicationDbContext _context;
+        private int swimId;
+        private int bikeId;
+        private int runId;
+        private CalculateExerciseDistance _distanceCalculator;
 
         public ParticipantController()
         {
             _context = new ApplicationDbContext();
+            swimId = 3;
+            bikeId = 2;
+            runId = 1;
+            _distanceCalculator = new CalculateExerciseDistance();
         }
         
         // GET: Participant
@@ -23,12 +33,14 @@ namespace IdleIronman.Controllers
         {
             var participantStatViewModel = new ParticpantStatsViewModel();
             var currentUserId = User.Identity.GetUserId();
+            
             //grabbing the current user
             ApplicationUser currentUser = _context.Users.Single(u => u.Id == currentUserId);
 
+            
             //must figure out way to remove magic int 3
             var totalSwimDistance = (from participant in _context.ActivityLogs
-                where participant.ExerciseTypeModelsId == 3 &&
+                where participant.ExerciseTypeModelsId == swimId &&
                 participant.ApplicationUserId == currentUserId
                 select participant.Distance).Sum();
 
@@ -38,7 +50,7 @@ namespace IdleIronman.Controllers
             }
 
             var totalBikeDistance = (from participant in _context.ActivityLogs
-                where participant.ExerciseTypeModelsId == 2 &&
+                where participant.ExerciseTypeModelsId == bikeId &&
                       participant.ApplicationUserId == currentUserId
                 select participant.Distance).Sum();
 
@@ -48,7 +60,7 @@ namespace IdleIronman.Controllers
             }
 
             var totalRunDistance = (from participant in _context.ActivityLogs
-                where participant.ExerciseTypeModelsId == 1 &&
+                where participant.ExerciseTypeModelsId == runId &&
                       participant.ApplicationUserId == currentUserId
                 select participant.Distance).Sum();
 
@@ -111,12 +123,24 @@ namespace IdleIronman.Controllers
             //Ensure ActivityDate is not before iimstart date and not after startdate + duration
             //Some sort of validation needed to ensure values are not null
 
-            var appUserId = User.Identity.GetUserId();
+            string appUserId = User.Identity.GetUserId();
+            double? distance;
+
+            if (activityViewModel.ActivityLog.ExerciseTypeModelsId != bikeId &&
+                activityViewModel.ActivityLog.ExerciseTypeModelsId != swimId &&
+            activityViewModel.ActivityLog.ExerciseTypeModelsId != runId)
+            {
+                distance = _distanceCalculator.GetDistance(activityViewModel);
+            }
+            else
+            {
+                distance = activityViewModel.ActivityLog.Distance;
+            }
 
             var activityLog = new ActivityLogModels
             {
                 ActivityDate = activityViewModel.ActivityLog.ActivityDate,
-                Distance = activityViewModel.ActivityLog.Distance,
+                Distance = distance,
                 DurationInMinutes = activityViewModel.ActivityLog.DurationInMinutes,
                 ExerciseTypeModelsId = activityViewModel.ActivityLog.ExerciseTypeModelsId,
                 ApplicationUserId = appUserId
@@ -124,9 +148,6 @@ namespace IdleIronman.Controllers
 
             _context.ActivityLogs.Add(activityLog);
             _context.SaveChanges();
-
-            var exerciseTypes = _context.ExerciseTypes.ToList();
-            activityViewModel.ExerciseType = exerciseTypes;
 
             return RedirectToAction("LogActivity", "Participant");
         }
