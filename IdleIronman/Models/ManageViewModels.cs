@@ -12,6 +12,7 @@ namespace IdleIronman.Models
         public string PhoneNumber { get; set; }
         public bool TwoFactor { get; set; }
         public bool BrowserRemembered { get; set; }
+        public ICollection<TeamApplicationModels> TeamApplications { get; set; }
     }
 
     public class ManageLoginsViewModel

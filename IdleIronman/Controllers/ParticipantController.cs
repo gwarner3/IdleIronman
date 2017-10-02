@@ -3,6 +3,7 @@ using System.Data.Entity;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using IdleIronman.Helpers;
 using IdleIronman.Models;
@@ -47,6 +48,12 @@ namespace IdleIronman.Controllers
                 return RedirectToAction("Index", "Home");
                 throw;
             }
+
+            //getting current users team name
+            var usersTeam = (from team in _context.Teams
+                where  team.Id == currentUser.TeamModelsId
+                select team.Name).ToString();
+
 
             
             //must figure out way to remove magic int 3
@@ -116,6 +123,24 @@ namespace IdleIronman.Controllers
 
 
             return View(participantStatViewModel);
+        }
+
+        //Post: /JoinTeam
+        public ActionResult JoinTeam(int id)
+        {
+            var currentUserId = User.Identity.GetUserId();
+            var currentUser = _context.Users.Single(u => u.Id == currentUserId);
+            var teamApplication = new TeamApplicationModels();
+            
+            teamApplication.ApplicationDate = DateTime.Now;
+            teamApplication.ApplicationUserId = currentUserId;
+            teamApplication.TeamModelsId = id;
+
+            _context.TeamApplications.Add(teamApplication);
+            _context.SaveChanges();
+
+
+            return RedirectToAction("Index", "Home");  
         }
 
         //GET: LogActivity
@@ -217,5 +242,18 @@ namespace IdleIronman.Controllers
         {
             return View();
         }
+
+        //public ActionResult ShowChart()
+        //{
+        //        var progressChart = new Chart(width: 400, height: 400)
+        //            .AddTitle("Exercise Progress")
+        //            .AddSeries(
+        //                name: "Progress",
+        //                xValue: new[] { "Swim", "Bike", "Run" },
+        //                yValues: new[] { ParticipantTotalSwimDistance, ParticipantTotalBikedDistance, ParticipantTotalRunDistance })
+        //            .Write();
+
+        //    return File(progressChart, "image/bytes");
+        //}
     }
 }
