@@ -1,17 +1,18 @@
-﻿@model IdleIronman.Models.IndexViewModel
+﻿@using Microsoft.AspNet.Identity
+@model IdleIronman.Models.IndexViewModel
 @{
     ViewBag.Title = "IIM";
 }
 
 <p class="text-success">@ViewBag.StatusMessage</p>
 <div>
-    <h2>Team - @Model.MyTeam.Name</h2>
+    <h2>@Model.MyTeam.Name</h2>
     <img src="~/Content/Images/@Model.MyTeam.LinkToPhoto" /><br />
 
     @using (Html.BeginForm("FileUpload", "TeamCaptain", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         <label for="file">Upload Image:</label>
-        <input type="file" class="btn btn-default" name="file" id="file" style="width: 100%;" /><br/>
+        <input type="file" class="btn btn-default" name="file" id="file" style="width: 100%;" /><br />
         //Cleaner appearance to input file above
         @*<label for="file">
                 Click here to upload Team Photo
@@ -33,9 +34,33 @@
 
         }
     }
+
+    @{
+        foreach (var team in Model.AllTeamApplications)
+        {
+            if (team.ApplicationUserId == User.Identity.GetUserId())
+            {
+                <h4>Pending team application</h4>
+                <p>You applied  to @team.TeamModels.Name on @team.ApplicationDate.ToShortDateString() @Html.ActionLink("Remove Application", "Delete", "TeamCaptain", new { id = team.Id }, null)</p>
+            }
+
+        }
+    }
+    
+
     <h4>Change your account settings</h4>
     <hr />
     <dl class="dl-horizontal">
+        <dt>Data privacy:</dt>
+        @if (Model.MyTeam.)
+        {
+            <dd>Privatize</dd>
+        }
+        else
+        {
+            <dd>Make public</dd>
+        }
+        
         <dt>Password:</dt>
         <dd>
             [

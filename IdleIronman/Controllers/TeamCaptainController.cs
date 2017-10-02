@@ -78,5 +78,38 @@ namespace IdleIronman.Controllers
             return RedirectToAction("Index", "Manage");
         }
 
+        public ActionResult Deny(int id)
+        {
+            //change users team id and role to participant
+            var application = _context.TeamApplications.Single(a => a.Id == id);
+            //var joiner = _context.Users.Single(j => j.Id == application.ApplicationUserId);
+
+
+            //joiner.TeamModelsId = id;
+            //Changing role
+            //var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(_context));
+            //UserManager.AddToRole(joiner.Id, RoleNames.CanManagePersonalData);
+
+
+            //Make changes to the application so it does not appear in list anymore
+            application.IsApproved = false;
+            application.WasDenied = true;
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Manage");
+        }
+
+        public ActionResult Delete(int id)
+        {
+            //change users team id and role to participant
+            var application = _context.TeamApplications.Single(a => a.Id == id);
+
+            _context.TeamApplications.Remove(application);
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Manage");
+        }
     }
 }

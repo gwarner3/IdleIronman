@@ -14,6 +14,8 @@ namespace IdleIronman.Models
         public bool BrowserRemembered { get; set; }
         public ICollection<TeamApplicationModels> TeamApplications { get; set; }
 
+        public ICollection<TeamApplicationModels> AllTeamApplications { get; set; }
+
         public TeamModels MyTeam { get; set; }
     }
 

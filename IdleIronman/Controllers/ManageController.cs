@@ -100,6 +100,8 @@ namespace IdleIronman.Controllers
 
                 model.MyTeam = _context.Teams.Single(x => x.Id == myTeamId);
 
+                model.AllTeamApplications = _context.TeamApplications.Select(t => t).Include(n=>n.TeamModels).ToList();
+
                 return View("TeamCaptainIndex", model);
             }
 
