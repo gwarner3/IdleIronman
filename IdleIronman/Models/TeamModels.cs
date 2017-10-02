@@ -22,6 +22,8 @@ namespace IdleIronman.Models
 
         public int IronManRuleModelsId { get; set; }
 
+        public bool IsPrivate { get; set; }
+
         public ICollection<ApplicationUser> Teammates { get; set; }
 
         public ICollection<TeamApplicationModels> TeamApplications { get; set; }

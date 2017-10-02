@@ -259,6 +259,10 @@
     <Compile Include="Migrations\201709291420270_SetDateFormatOnActivityLogModels.Designer.cs">
       <DependentUpon>201709291420270_SetDateFormatOnActivityLogModels.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710021940424_AddedPrivacyPropertyToTeamModel.cs" />
+    <Compile Include="Migrations\201710021940424_AddedPrivacyPropertyToTeamModel.Designer.cs">
+      <DependentUpon>201710021940424_AddedPrivacyPropertyToTeamModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ActivityLogModels.cs" />
@@ -412,6 +416,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709291420270_SetDateFormatOnActivityLogModels.resx">
       <DependentUpon>201709291420270_SetDateFormatOnActivityLogModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710021940424_AddedPrivacyPropertyToTeamModel.resx">
+      <DependentUpon>201710021940424_AddedPrivacyPropertyToTeamModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
