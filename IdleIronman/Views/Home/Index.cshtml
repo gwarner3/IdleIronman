@@ -1,6 +1,7 @@
-﻿@model IdleIronman.ViewModels.AllStatsViewModel
+﻿@using Microsoft.AspNet.Identity
+@model IdleIronman.ViewModels.AllStatsViewModel
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "IIM - Home";
 }
 
 <div class="jumbotron">
@@ -10,6 +11,7 @@
 </div>
 
 <div class="row">
+    <h2>Users Team Name @Model.UsersTeam</h2>
     <table class="table">
         <tr>
             <th>
@@ -33,26 +35,51 @@
             <tr>
                 <td>
                     @item.Name<br/>
-                    <img src="~/Content/Images/@item.LinkToPhoto" />
+                    <img src="~/Content/Images/@item.LinkToPhoto"/>
                 </td>
                 <td>
-                   Days Left
+                    Days Left
                 </td>
                 <td>
                     Progress
                 </td>
                 <td>
-                    Members
+                    Has @item.Teammates.Count Members
                 </td>
                 <td>
-                    Links
+                    @{
+                        if (User.Identity.IsAuthenticated)
+                        {
+                            var enddate = item.IronManRuleModels.StartDate.AddDays(item.IronManRuleModels.DurationInDays);
+
+                            var daysUntilEnd = (enddate - DateTime.Today).TotalDays;
+
+
+
+                            if (item.Teammates.Count < 3 && User.Identity.IsAuthenticated && daysUntilEnd > 15)
+                            {
+                                @Html.ActionLink("Join Team", "JoinTeam", "Participant", new { id = item.Id }, null)
+                            }
+
+                        }
+
+                    }
+                    
                 </td>
+
             </tr>
         }
     </table>
 </div>
 
-<div class="row">
+@*@foreach (var participant in Model.ApplicationUsers)
+{
+    <p>Name @participant.FirstName @participant.LastName</p>
+    <p>Swim</p>
+    
+}*@
+
+@*<div class="row">
     <div class="col-md-4">
         <h2>Getting started</h2>
         <p>
@@ -72,4 +99,4 @@
         <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
         <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
     </div>
-</div>
+</div>*@

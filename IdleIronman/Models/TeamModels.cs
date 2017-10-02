@@ -24,5 +24,7 @@ namespace IdleIronman.Models
 
         public ICollection<ApplicationUser> Teammates { get; set; }
 
+        public ICollection<TeamApplicationModels> TeamApplications { get; set; }
+
     }
 }

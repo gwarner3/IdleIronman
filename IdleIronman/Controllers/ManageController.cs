@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using IdleIronman.Helpers;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -72,6 +74,28 @@ namespace IdleIronman.Controllers
                 Logins = await UserManager.GetLoginsAsync(userId),
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
             };
+
+            if (User.IsInRole(RoleNames.CanManageTeamData))
+            {
+                var _context = new ApplicationDbContext();
+
+                var currentUserId = User.Identity.GetUserId();
+
+                var currentUser = _context.Users.Single(u => u.Id == currentUserId);
+
+                var myTeamId = currentUser.TeamModelsId;
+                //var myteamApplications = _context.TeamApplications.Select(myTeamApps=>myTeamApps.TeamModelsId).Where(myTeamId=>myTeamId.)
+
+                var myTeamApplications = (from applications in _context.TeamApplications
+                    where myTeamId == applications.TeamModelsId &&
+                    applications.IsApproved == false
+                    select applications).Include(n=>n.ApplicationUser).ToList();
+
+                model.TeamApplications = myTeamApplications;
+
+                return View("TeamCaptainIndex", model);
+            }
+
             return View(model);
         }
 

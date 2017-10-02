@@ -10,13 +10,21 @@ namespace IdleIronman.ViewModels
     {
         public IEnumerable<TeamModels> Teams { get; set; }
 
-        public IEnumerable<IronManRuleModels> IronManRule { get; set; }
+        public ICollection<IronManRuleModels> IronManRule { get; set; }
 
         public IEnumerable<ActivityLogModels> ActivityLog { get; set; }
 
-        public IEnumerable<ApplicationUser> ApplicationUsers { get; set; }
+        public ICollection<ApplicationUser> ApplicationUsers { get; set; }
+
 
         public double TemmateTotalSwimDistance { get; set; }
-        
+
+        public IEnumerable<ParticpantStatsViewModel> ParticipantStats { get; set; }
+
+        public string UsersTeam { get; set; }
+
+        //properties for individual user stats test
+        public double TotalSwimDistance { get; set; }
+
     }
 }

@@ -1,0 +1,10 @@
+﻿
+@{
+    var progressChart = new Chart(width:400, height: 400)
+        .AddTitle("Exercise Progress")
+        .AddSeries(
+            name: "Progress",
+            xValue: new[] { "Swim", "Bike", "Run" },
+            yValues: new[] { @Model.ParticipantTotalSwimDistance, @Model.ParticipantTotalBikedDistance, @Model.ParticipantTotalRunDistance })
+        .Write();
+}

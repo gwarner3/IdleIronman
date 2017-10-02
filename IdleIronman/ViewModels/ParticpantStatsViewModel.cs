@@ -23,7 +23,5 @@ namespace IdleIronman.ViewModels
         public double ParticipantTotalBikedDistance { get; set; }
 
         public double DaysUntilEnd { get; set; }
-
-
     }
 }
