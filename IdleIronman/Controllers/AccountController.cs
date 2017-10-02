@@ -184,7 +184,8 @@ namespace IdleIronman.Controllers
                 var team = new TeamModels
                 {
                     Name = model.TeamName,
-                    IronManRuleModelsId = ironManRules.Id
+                    IronManRuleModelsId = ironManRules.Id,
+                    LinkToPhoto = "defaultTeamImage.png"
                 };
                 _context.Teams.Add(team);
                 _context.SaveChanges();
