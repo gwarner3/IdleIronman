@@ -275,8 +275,11 @@
     <Compile Include="ViewModels\ParticpantStatsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-superhero.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\defaultTeamImage.png" />
+    <Content Include="Content\Images\teamPhoto.png" />
     <Content Include="favicon.ico" />
     <Content Include="Models\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

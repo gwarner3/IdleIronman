@@ -20,7 +20,7 @@ namespace IdleIronman.Controllers
 
             if (User.IsInRole(RoleNames.CanManageTeamData))
             {
-                return RedirectToAction("Index", "TeamCaptain");
+                return RedirectToAction("Index", "Participant");
             }
 
             if (User.IsInRole(RoleNames.CanManageAllData))

@@ -4,14 +4,27 @@
     ViewBag.Title = "IIM - Home";
 }
 
-<div class="jumbotron">
+@*<div class="jumbotron">
     <h1>General Rules</h1>
     <p class="lead">Idle Iron Man rules summarized here</p>
     <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+</div>*@
+
+
 
 <div class="row">
-    <h2>Users Team Name @Model.UsersTeam</h2>
+    <h1>Idle Ironman quick rules</h1>
+    <ul>
+        <li>Register to begin tracking your progress.</li>
+        <li>Find a team or take it on solo.</li>
+        <li>Run 26.22 miles, swim, 2.4 miles, and bike 112 miles in 30 days!</li>
+    </ul>
+    @*This section will be visible only to authorized users*@
+    @if (User.Identity.IsAuthenticated)
+    {
+        <h2>Users Team Name @Model.UsersTeam</h2>
+    }
+    
     <table class="table">
         <tr>
             <th>
@@ -27,7 +40,11 @@
                 Members
             </th>
             <th>
-                Links
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <p>Links</p>
+                }
+
             </th>
         </tr>
         @foreach (var item in Model.Teams)
@@ -58,13 +75,13 @@
 
                             if (item.Teammates.Count < 3 && User.Identity.IsAuthenticated && daysUntilEnd > 15)
                             {
-                                @Html.ActionLink("Join Team", "JoinTeam", "Participant", new { id = item.Id }, null)
+                                @Html.ActionLink("Join Team", "JoinTeam", "Participant", new {id = item.Id}, null)
                             }
 
                         }
 
                     }
-                    
+
                 </td>
 
             </tr>

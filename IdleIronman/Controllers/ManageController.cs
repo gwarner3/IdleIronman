@@ -53,6 +53,11 @@ namespace IdleIronman.Controllers
         }
 
         //
+        public ActionResult TeamCaptainIndex()
+        {
+            return RedirectToAction("Index", "Manage");
+        }
+
         // GET: /Manage/Index
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
@@ -92,6 +97,8 @@ namespace IdleIronman.Controllers
                     select applications).Include(n=>n.ApplicationUser).ToList();
 
                 model.TeamApplications = myTeamApplications;
+
+                model.MyTeam = _context.Teams.Single(x => x.Id == myTeamId);
 
                 return View("TeamCaptainIndex", model);
             }

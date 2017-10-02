@@ -13,6 +13,8 @@ namespace IdleIronman.Models
         public bool TwoFactor { get; set; }
         public bool BrowserRemembered { get; set; }
         public ICollection<TeamApplicationModels> TeamApplications { get; set; }
+
+        public TeamModels MyTeam { get; set; }
     }
 
     public class ManageLoginsViewModel

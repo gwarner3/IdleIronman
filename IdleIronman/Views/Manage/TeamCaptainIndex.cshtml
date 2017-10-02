@@ -1,24 +1,34 @@
 ﻿@model IdleIronman.Models.IndexViewModel
 @{
-    ViewBag.Title = "Manage";
+    ViewBag.Title = "IIM";
 }
-
-<h2>@ViewBag.Title.</h2>
 
 <p class="text-success">@ViewBag.StatusMessage</p>
 <div>
-    <h2>Team Captain Manage page</h2>
+    <h2>Team - @Model.MyTeam.Name</h2>
+    <img src="~/Content/Images/@Model.MyTeam.LinkToPhoto" /><br />
+
+    @using (Html.BeginForm("FileUpload", "TeamCaptain", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <label for="file">Upload Image:</label>
+        <input type="file" name="file" id="file" style="width: 100%;" />
+        //Cleaner appearance to input file above
+        @*<label for="file">
+                Click here to upload Team Photo
+                <input type="file" name="file" id="file" style="display: none;" />
+            </label>
+            <br/>*@
+        <input type="submit" value="Save" class="submit btn btn-default" />
+    }
     @{
         if (Model.TeamApplications.Count > 0)
         {
+            <h4>Someone wants to join your team.</h4>
             foreach (var application in Model.TeamApplications)
             {
                 var userName = User.Identity.Name;
-                @*<p>@application.ApplicationUserId</p>*@
-                <table>
-                    
-                </table>
-                <p>@application.ApplicationUser.FirstName @application.ApplicationUser.LastName applied on @application.ApplicationDate.ToShortDateString() @Html.ActionLink("Accept", "Accept", "TeamCaptain", new {id = application.Id}, null) | @Html.ActionLink("Deny", "Deny", "TeamCaptain", new { id = application.Id }, null)</p>
+                <table></table>
+                <p>@application.ApplicationUser.FirstName @application.ApplicationUser.LastName applied on @application.ApplicationDate.ToShortDateString() @Html.ActionLink("Accept", "Accept", "TeamCaptain", new { id = application.Id }, null) | @Html.ActionLink("Deny", "Deny", "TeamCaptain", new { id = application.Id }, null)</p>
             }
 
         }
