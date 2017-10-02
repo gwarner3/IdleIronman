@@ -111,5 +111,25 @@ namespace IdleIronman.Controllers
 
             return RedirectToAction("Index", "Manage");
         }
+
+        public ActionResult ChangePrivacy(int id)
+        {
+            var currentUserId = User.Identity.GetUserId();
+            ApplicationUser currentUser = _context.Users.Single(u => u.Id == currentUserId);
+
+            var myTeam = _context.Teams.Single(x => x.Id == id);
+            if (myTeam.IsPrivate)
+            {
+                myTeam.IsPrivate = false;
+            }
+            else
+            {
+                myTeam.IsPrivate = true;
+            }
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Manage");
+        }
     }
 }

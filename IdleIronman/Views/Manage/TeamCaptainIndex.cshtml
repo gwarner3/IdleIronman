@@ -52,13 +52,13 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>Data privacy:</dt>
-        @if (Model.MyTeam.)
+        @if (Model.MyTeam.IsPrivate == false)
         {
-            <dd>Privatize</dd>
+            <dd>@Html.ActionLink("Make private", "ChangePrivacy", "TeamCaptain", new { id = Model.MyTeam.Id }, null)</dd>
         }
         else
         {
-            <dd>Make public</dd>
+            <dd>@Html.ActionLink("Make public", "ChangePrivacy", "TeamCaptain", new { id = Model.MyTeam.Id }, null)</dd>
         }
         
         <dt>Password:</dt>
