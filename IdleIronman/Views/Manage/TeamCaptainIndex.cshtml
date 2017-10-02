@@ -11,7 +11,7 @@
     @using (Html.BeginForm("FileUpload", "TeamCaptain", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         <label for="file">Upload Image:</label>
-        <input type="file" name="file" id="file" style="width: 100%;" />
+        <input type="file" class="btn btn-default" name="file" id="file" style="width: 100%;" /><br/>
         //Cleaner appearance to input file above
         @*<label for="file">
                 Click here to upload Team Photo
