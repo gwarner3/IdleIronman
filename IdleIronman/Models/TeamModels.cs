@@ -28,5 +28,7 @@ namespace IdleIronman.Models
 
         public ICollection<TeamApplicationModels> TeamApplications { get; set; }
 
+        public ICollection<ActivityLogModels> TeamTotalSwimDistance { get; set; }
+
     }
 }

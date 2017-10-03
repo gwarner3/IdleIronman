@@ -14,6 +14,8 @@ namespace IdleIronman.ViewModels
 
         public IEnumerable<ActivityLogModels> ActivityLog { get; set; }
 
+        public List<IGrouping<double?, ActivityLogModels>> TeamTotalSwimDistance { get; set; }
+
         public ICollection<ApplicationUser> ApplicationUsers { get; set; }
 
 
@@ -25,6 +27,7 @@ namespace IdleIronman.ViewModels
 
         //properties for individual user stats test
         public double TotalSwimDistance { get; set; }
+
 
     }
 }

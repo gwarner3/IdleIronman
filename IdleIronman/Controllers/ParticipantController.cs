@@ -255,5 +255,45 @@ namespace IdleIronman.Controllers
 
         //    return File(progressChart, "image/bytes");
         //}
+        public ActionResult DisplayStats()
+        {
+            
+            List<TeamModels> teams;
+            ApplicationUser currentUser;
+            TeamStatsViewModel teamRecordsViewModel = new TeamStatsViewModel();
+            TeamStatsListViewModel teamStatsListed = new TeamStatsListViewModel();
+            teamStatsListed.TeamStats = new List<TeamStatsViewModel>();
+
+            if (User.Identity.IsAuthenticated)
+            {
+                var currentUserId = User.Identity.GetUserId();
+                currentUser = _context.Users.Single(u => u.Id == currentUserId);
+                teams = (from team in _context.Teams
+                        where team.Teammates.Count > 0 &&
+                              team.Id != currentUser.TeamModelsId &&
+                              team.IsPrivate == false
+                        select team).Include(u => u.TeamApplications)
+                    .Include(r => r.IronManRuleModels)
+                    .Include(m => m.Teammates)
+                    .Include(td => td.TeamTotalSwimDistance).ToList();
+            }
+            else
+            {
+                teams = _context.Teams.Where(c => c.Teammates.Count > 0).Select(t => t)
+                    .Include(r => r.IronManRuleModels)
+                    .Include(m => m.Teammates)
+                    .Include(td => td.TeamTotalSwimDistance).ToList();
+            }
+
+            for (int i = 0; i < teams.Count; i++)
+            {
+                var singleRecord = new TeamStatsViewModel();
+                singleRecord.TeamId = teams[i].Id;
+                singleRecord.TeamName = teams[i].Name;
+                teamStatsListed.TeamStats.Add(singleRecord);
+            }
+
+            return View(teamStatsListed);
+        }
     }
 }

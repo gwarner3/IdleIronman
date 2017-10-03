@@ -1,0 +1,13 @@
+﻿@model IdleIronman.ViewModels.TeamStatsListViewModel
+@{
+    ViewBag.Title = "DisplayStats";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>DisplayStats</h2>
+
+@foreach (var record in Model.TeamStats)
+    {
+        <p>Team Id: @record.TeamId </p>
+        <p>Team Name: @record.TeamName </p>
+    }
