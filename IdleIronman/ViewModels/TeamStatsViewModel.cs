@@ -15,5 +15,13 @@ namespace IdleIronman.ViewModels
         public string TeamPhotoName { get; set; }
 
         public DateTime StartDate { get; set; }
+
+        public double DaysLeft { get; set; }
+
+        public double TotalRunDistance { get; set; }
+        public double TotalBikeDistance { get; set; }
+        public double TotalSwimDistance { get; set; }
+
+        public List<ApplicationUser> Teammates { get; set; }
     }
 }

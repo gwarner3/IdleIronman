@@ -8,14 +8,23 @@
 
         <table class="table table-striped table-hover">
             <thead>
-            <tr>
-                <th>
-                    Team ID
-                </th>
-                <th>
-                    Name
-                </th>
-            </tr>
+                <tr>
+                    <th>
+                        Team ID
+                    </th>
+                    <th>
+                        Name and photo
+                    </th>
+                    <th>
+                        Timeline
+                    </th>
+                    <th>
+                        Members
+                    </th>
+                    <th>
+                        Progress
+                    </th>
+                </tr>
             </thead>
             <tbody>
                 @foreach (var record in Model.TeamStats)
@@ -25,7 +34,23 @@
                             @record.TeamId
                         </td>
                         <td>
-                            @record.TeamName
+                            @record.TeamName<br/>
+                            <img src="~/Content/Images/@record.TeamPhotoName" />
+                        </td>
+                        <td>
+                            Started: @record.StartDate.ToShortDateString()<br/>
+                            Days left: @record.DaysLeft
+                        </td>
+                        <td>
+                            @foreach (var member in record.Teammates)
+                            {
+                                <text>@member.FirstName @member.LastName</text><br/>
+                            }
+                        </td>
+                        <td>
+                            Total Swim: @record.TotalSwimDistance<br/>
+                            Total Run: @record.TotalRunDistance<br/>
+                            Total Bike: @record.TotalBikeDistance
                         </td>
                     </tr>
                 }

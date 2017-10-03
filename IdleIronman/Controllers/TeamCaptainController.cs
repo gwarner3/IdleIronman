@@ -31,10 +31,11 @@ namespace IdleIronman.Controllers
             var joiner = _context.Users.Single(j => j.Id == application.ApplicationUserId);
             
 
-            joiner.TeamModelsId = id;
+            joiner.TeamModelsId = application.TeamModelsId;
             //Changing role
             var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(_context));
             UserManager.AddToRole(joiner.Id, RoleNames.CanManagePersonalData);
+            UserManager.RemoveFromRole(joiner.Id, RoleNames.CanManageTeamData);
 
 
             //Make changes to the application so it does not appear in list anymore

@@ -19,6 +19,9 @@ namespace IdleIronman.Controllers
         private int swimId;
         private int bikeId;
         private int runId;
+        private int waterAerobicsId;
+        private int spinId;
+        private int rowId;
         private CalculateExerciseDistance _distanceCalculator;
 
         public ParticipantController()
@@ -28,6 +31,9 @@ namespace IdleIronman.Controllers
             swimId = 3;
             bikeId = 2;
             runId = 1;
+            waterAerobicsId = 6;
+            spinId = 5;
+            rowId = 4;
             _distanceCalculator = new CalculateExerciseDistance();
         }
         
@@ -257,7 +263,10 @@ namespace IdleIronman.Controllers
         //}
         public ActionResult DisplayStats()
         {
-            
+
+            var swimId = 3;
+            var bikeId = 2;
+            var runId = 1;
             List<TeamModels> teams;
             ApplicationUser currentUser;
             TeamStatsViewModel teamRecordsViewModel = new TeamStatsViewModel();
@@ -285,13 +294,87 @@ namespace IdleIronman.Controllers
                     .Include(td => td.TeamTotalSwimDistance).ToList();
             }
 
+            
+
             for (int i = 0; i < teams.Count; i++)
             {
                 var teamRecord = new TeamStatsViewModel();
                 teamRecord.TeamId = teams[i].Id;
+
                 teamRecord.TeamName = teams[i].Name;
+
                 teamRecord.TeamPhotoName = teams[i].LinkToPhoto;
+
                 teamRecord.StartDate = teams[i].IronManRuleModels.StartDate;
+
+                var durationInDays = teams[i].IronManRuleModels.DurationInDays;
+                var endDate = teams[i].IronManRuleModels.StartDate.AddDays(durationInDays);
+                var daysLeft = (endDate - DateTime.Today).TotalDays;
+                teamRecord.DaysLeft = daysLeft;
+
+                teamRecord.Teammates = teams[i].Teammates.ToList();
+
+                var eachUsersLog = _context.Users.Include(x => x.ActivityLog).ToList();
+
+                var teamsLog = (from logs in eachUsersLog
+                    where logs.TeamModelsId == teams[i].Id
+                    select logs.ActivityLog.ToList()).ToList();
+
+                for (int x = 0; x < teamsLog.Count(); x++)
+                {
+                    var thisLog = teamsLog[x];
+
+                    for (int y = 0; y < thisLog.Count; y++)
+                    {
+                        if (thisLog[y].ExerciseTypeModelsId == swimId || thisLog[y].ExerciseTypeModelsId == rowId || thisLog[y].ExerciseTypeModelsId == waterAerobicsId)
+                        {
+                            teamRecord.TotalSwimDistance += (double) thisLog[y].Distance;
+                        }
+                        else if (thisLog[y].ExerciseTypeModelsId == bikeId || thisLog[y].ExerciseTypeModelsId == spinId)
+                        {
+                            teamRecord.TotalBikeDistance += (double) thisLog[y].Distance;
+                        }
+                        else if (thisLog[y].ExerciseTypeModelsId == runId)
+                        {
+                            teamRecord.TotalRunDistance += (double) thisLog[y].Distance;
+                        }
+
+                    }
+                    
+                }
+
+                 //teamsLog[0].ActivityLog.ToList()
+                //var eachTeamsLog = _context.Users.Include(x => x.ActivityLog).Where(m=>m.TeamModelsId == teams[i].Id).ToList();
+
+                //var eachTeamsLog = fromo 
+                //var test = eachUsersLog.[i]
+
+                //for (int a = 0;  a < teamsLog.Count(); a++)
+                //{
+                //    if (teamsLog[a].ActivityLog.)
+                //}
+
+                //for (int l = 0; l < eachUsersLog.Count; l++)
+                //{
+                //    if (eachUsersLog[l].TeamModelsId == teams[i].Id)
+                //    {
+                //        teamRecord.TotalSwimDistance = (double) (from swims in eachUsersLog[l].ActivityLog
+                //            where swims.ExerciseTypeModelsId == swimId
+                //            select swims.Distance).Sum();
+                //    }
+                    //if (eachUsersLog[l].ActivityLog.)
+                //    Console.WriteLine(eachUsersLog[l]);
+                //}
+
+                //var totalRun = from activities in eachUsersLog
+                
+                //var totalSwim = eachUsersLog.
+                //    GroupBy(t => t.TeamModelsId, (x, y) => y.Where(z => z.TeamModelsId == x)
+                //        .Aggregate<ApplicationUser, double?>(0.0, (r, t) => r += t.ActivityLog.Where(si => si.ExerciseTypeModelsId == swimId)
+                //            .Sum(c => c.Distance))).Single();
+
+
+
 
                 teamStatsListed.TeamStats.Add(teamRecord);
             }
