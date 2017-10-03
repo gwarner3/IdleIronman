@@ -1,0 +1,20 @@
+﻿@model IdleIronman.ViewModels.TeamStatsListViewModel
+
+@{
+    Layout = null;
+}
+
+
+@{
+    var totalDistanceChart = new Chart(400, 100, ChartTheme.Blue)
+        .AddTitle("Total distance covered")
+        //.AddLegend()
+        .AddSeries(
+        name: "Distance covered",
+        chartType: "bar",
+        xValue: new[] { "1 Distance" },
+        yValues: new[] { "140" }).Write();
+
+}
+@DateTime.Today
+

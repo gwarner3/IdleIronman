@@ -37,6 +37,7 @@
                             @record.TeamName<br/>
                             <img src="~/Content/Images/@record.TeamPhotoName" /><br/>
                             @*@record.Chart.Write(format: "png")*@
+                            <img src="@Url.Action("MakeChart", "Participant", new { model = @Model})"/>
 
                         </td>
                         <td>

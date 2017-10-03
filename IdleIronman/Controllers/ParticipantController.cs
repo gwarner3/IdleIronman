@@ -376,5 +376,12 @@ namespace IdleIronman.Controllers
 
             return View(teamStatsListed);
         }
+
+        public ActionResult MakeChart(TeamStatsListViewModel model)
+        {
+            var chartModel = new TeamStatsListViewModel();
+            chartModel = model;
+            return View(chartModel);
+        }
     }
 }

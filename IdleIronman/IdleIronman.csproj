@@ -350,6 +350,7 @@
     <Content Include="Views\Participant\ParticipantChart.cshtml" />
     <Content Include="Views\Manage\TeamCaptainIndex.cshtml" />
     <Content Include="Views\Participant\DisplayStats.cshtml" />
+    <Content Include="Views\Participant\MakeChart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
