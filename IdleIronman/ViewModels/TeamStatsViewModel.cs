@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
 using IdleIronman.Models;
 
 namespace IdleIronman.ViewModels
@@ -21,6 +22,8 @@ namespace IdleIronman.ViewModels
         public double TotalRunDistance { get; set; }
         public double TotalBikeDistance { get; set; }
         public double TotalSwimDistance { get; set; }
+
+        public Chart Chart { get; set; }
 
         public List<ApplicationUser> Teammates { get; set; }
     }

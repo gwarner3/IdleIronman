@@ -35,7 +35,9 @@
                         </td>
                         <td>
                             @record.TeamName<br/>
-                            <img src="~/Content/Images/@record.TeamPhotoName" />
+                            <img src="~/Content/Images/@record.TeamPhotoName" /><br/>
+                            @*@record.Chart.Write(format: "png")*@
+
                         </td>
                         <td>
                             Started: @record.StartDate.ToShortDateString()<br/>
@@ -44,7 +46,7 @@
                         <td>
                             @foreach (var member in record.Teammates)
                             {
-                                <text>@member.FirstName @member.LastName</text><br/>
+                                <text>@member.FirstName @member.LastName</text> @Html.ActionLink("view stats", "Index", "Participant", new {id = member.Id}, null) <br/>
                             }
                         </td>
                         <td>

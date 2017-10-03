@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Participant Index</h2>
+<h2>@Model.ApplicationUser.FirstName @Model.ApplicationUser.LastName</h2>
 
 <p>Swam: @Model.ParticipantTotalSwimDistance.ToString("0.00") miles</p>
 
@@ -29,9 +29,14 @@
         <th>
             Distance
         </th>
-        <th>
-            Make Changes
-        </th>
+        @{
+            if (Model.CurrentViewer.Id == Model.ApplicationUser.Id)
+            {
+                <th>
+                    Make Changes
+                </th>
+            }
+        }
     </tr>
     @foreach (var log in Model.ActivityLogModels)
     {
@@ -51,10 +56,16 @@
             <td>
                 @log.Distance
             </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", "Participant", new {id = log.Id}, null) | 
-                @Html.ActionLink("Delete", "Delete", "Participant", new {id = log.Id}, null)
-            </td>
+            @{
+                if (Model.CurrentViewer.Id == Model.ApplicationUser.Id)
+                {
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", "Participant", new {id = log.Id}, null) | @Html.ActionLink("Delete", "Delete", "Participant", new {id = log.Id}, null)
+                    </td>
+                }
+            }
+                @*@Html.ActionLink("Edit", "Edit", "Participant", new { id = log.Id }, null) |
+                @Html.ActionLink("Delete", "Delete", "Participant", new { id = log.Id }, null)*@
         </tr>
     }
 </table>

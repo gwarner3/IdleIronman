@@ -14,6 +14,8 @@ namespace IdleIronman.ViewModels
 
         public ApplicationUser ApplicationUser { get; set; }
 
+        public ApplicationUser CurrentViewer { get; set; }
+
         public IronManRuleModels IronManRules { get; set; }
 
         public double ParticipantTotalSwimDistance { get; set; }
