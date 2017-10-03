@@ -11,5 +11,9 @@ namespace IdleIronman.ViewModels
         public int TeamId { get; set; }
 
         public string TeamName { get; set; }
+
+        public string TeamPhotoName { get; set; }
+
+        public DateTime StartDate { get; set; }
     }
 }

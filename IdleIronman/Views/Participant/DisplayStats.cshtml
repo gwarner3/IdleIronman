@@ -6,8 +6,28 @@
 
 <h2>DisplayStats</h2>
 
-@foreach (var record in Model.TeamStats)
-    {
-        <p>Team Id: @record.TeamId </p>
-        <p>Team Name: @record.TeamName </p>
-    }
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <th>
+                    Team ID
+                </th>
+                <th>
+                    Name
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+                @foreach (var record in Model.TeamStats)
+                {
+                    <tr>
+                        <td>
+                            @record.TeamId
+                        </td>
+                        <td>
+                            @record.TeamName
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>    

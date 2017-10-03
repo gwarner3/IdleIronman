@@ -287,10 +287,13 @@ namespace IdleIronman.Controllers
 
             for (int i = 0; i < teams.Count; i++)
             {
-                var singleRecord = new TeamStatsViewModel();
-                singleRecord.TeamId = teams[i].Id;
-                singleRecord.TeamName = teams[i].Name;
-                teamStatsListed.TeamStats.Add(singleRecord);
+                var teamRecord = new TeamStatsViewModel();
+                teamRecord.TeamId = teams[i].Id;
+                teamRecord.TeamName = teams[i].Name;
+                teamRecord.TeamPhotoName = teams[i].LinkToPhoto;
+                teamRecord.StartDate = teams[i].IronManRuleModels.StartDate;
+
+                teamStatsListed.TeamStats.Add(teamRecord);
             }
 
             return View(teamStatsListed);
