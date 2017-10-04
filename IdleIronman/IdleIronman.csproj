@@ -181,6 +181,7 @@
     </Compile>
     <Compile Include="Helpers\ActivityLogDateIsWithinRange.cs" />
     <Compile Include="Helpers\CalculateExerciseDistance.cs" />
+    <Compile Include="Helpers\CreateTeamStatsList.cs" />
     <Compile Include="Helpers\RoleNames.cs" />
     <Compile Include="Migrations\201709261922051_InitialMigration.cs" />
     <Compile Include="Migrations\201709261922051_InitialMigration.Designer.cs">

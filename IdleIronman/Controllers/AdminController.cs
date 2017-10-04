@@ -6,9 +6,11 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 using IdleIronman.Helpers;
 using IdleIronman.Models;
 using IdleIronman.ViewModels;
+using Microsoft.Owin.Security.Google;
 
 namespace IdleIronman.Controllers
 {
@@ -20,6 +22,8 @@ namespace IdleIronman.Controllers
         public ActionResult Index()
         {
             var activityLogs = db.ActivityLogs.Include(a => a.ApplicationUser).Include(a => a.ExerciseTypeModels);
+
+
             return View(activityLogs.ToList());
         }
 
@@ -140,8 +144,21 @@ namespace IdleIronman.Controllers
             base.Dispose(disposing);
         }
 
-        public ActionResult DisplayCharts(TeamStatsListViewModel teamStatsListed)
+        public ActionResult DisplayCharts()
         {
+
+            TeamStatsListViewModel teamstatsList = CreateTeamStatsList.GetTeamStatsList();
+
+            JsonResult chartData = new JsonResult();
+            //var jsonSerializer = new JavaScriptSerializer();
+            //var chartData2 = jsonSerializer.Serialize(teamstatsList);
+
+            List<object> data = new List<object>();
+            data.Add(new[] { "Day", "Kasse", "Bonds", "Stocks", "Futures", "Options" });
+            data.Add(new[] { 01.03, 200, 500, 100, 0, 10 });
+            data.Add(new[] { 01.03, 300, 450, 150, 50, 30 });
+            data.Add(new[] { 12.15, 350, 200, 180, 80, 40 });
+
 
             return View();
         }
