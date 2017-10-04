@@ -93,6 +93,8 @@ namespace IdleIronman.Controllers
             //    allStatsViewModel.TeamStats.Add(singleRecord);
             //}
 
+
+
             return View(allStatsViewModel);
         }
 

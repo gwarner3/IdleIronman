@@ -77,25 +77,28 @@
                 <td>
                     Progress
                     @{
-                        double? totalSwim = null;
-                        double? totalRun = null;
-                        double? totalBike = null;
 
-                        foreach (var actLog in Model.ActivityLog)
-                        {
-                            if (actLog.ExerciseTypeModelsId == 3 || actLog.ExerciseTypeModelsId == 6)
-                            {
-                                totalSwim += actLog.Distance;
-                            }
-                            else if (actLog.ExerciseTypeModelsId == 2)
-                            {
+//double? totalSwim = null;
+//double? totalRun = null;
+//double? totalBike = null;
 
-                            }
-                            else if (actLog.ExerciseTypeModelsId == 3)
-                            {
+//var totalDistance = item.TeamTotalSwimDistance.Select(x=>x.
 
-                            }
-                        }
+//foreach (var actLog in Model.ActivityLog)
+//{
+//    if (actLog.ExerciseTypeModelsId == 3 || actLog.ExerciseTypeModelsId == 6)
+//    {
+//        totalSwim += actLog.Distance;
+//    }
+//    else if (actLog.ExerciseTypeModelsId == 2)
+//    {
+
+//    }
+//    else if (actLog.ExerciseTypeModelsId == 3)
+//    {
+
+//    }
+//}
                     }
                     @item.TeamTotalSwimDistance
                 </td>
