@@ -1,0 +1,63 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <!--Load the AJAX API-->
+    
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Idle Ironman Tracker", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                @Html.Partial("_NavbarPartial")
+            </div>
+        </div>
+    </div>
+<div class="container body-content">
+    <div class="row">
+        <div class="col-md-10">@RenderBody()</div>
+        <div class="col-md-2">
+            <div class="alignleft">
+                <div class="alignleft">
+                    <script type="text/javascript">
+                        amzn_assoc_ad_type = "banner";
+                        amzn_assoc_marketplace = "amazon";
+                        amzn_assoc_region = "US";
+                        amzn_assoc_placement = "assoc_banner_placement_default";
+                        amzn_assoc_banner_type = "ez";
+                        amzn_assoc_p = "11";
+                        amzn_assoc_width = "120";
+                        amzn_assoc_height = "600";
+                        amzn_assoc_tracking_id = "gdabc-20";
+                        amzn_assoc_linkid = "7f8dcbf27bf83da82119e2ad20185a65";
+                    </script>
+                    <script src="//z-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&Operation=GetScript&ID=OneJS&WS=1"></script>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <hr/>
+    <footer>
+        <p>&copy; @DateTime.Now.Year - Idle Ironman Tracker</p>
+    </footer>
+</div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

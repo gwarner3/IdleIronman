@@ -351,6 +351,7 @@
     <Content Include="Views\Manage\TeamCaptainIndex.cshtml" />
     <Content Include="Views\Participant\DisplayStats.cshtml" />
     <Content Include="Views\Participant\MakeChart.cshtml" />
+    <Content Include="Views\Shared\_LayoutForCharts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

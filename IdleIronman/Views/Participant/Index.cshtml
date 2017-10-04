@@ -46,12 +46,6 @@
             </td>
             <td>
                 @log.ExerciseTypeModels.Name
-
-                @*@Model.ExerciseType.Where(e => e.Id == log.ExerciseTypeModelsId).Select(e => e.Name)
-
-                @Model.ActivityLogModels.Where(e=>e.ExerciseTypeModelsId == log.ExerciseTypeModelsId).Select(e=>e.ExerciseTypeModels.Name);*@
-               
-                @*@log.ExerciseTypeModels.Name*@
             </td>
             <td>
                 @log.Distance
@@ -64,8 +58,6 @@
                     </td>
                 }
             }
-                @*@Html.ActionLink("Edit", "Edit", "Participant", new { id = log.Id }, null) |
-                @Html.ActionLink("Delete", "Delete", "Participant", new { id = log.Id }, null)*@
         </tr>
     }
 </table>

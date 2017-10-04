@@ -26,5 +26,7 @@ namespace IdleIronman.ViewModels
         public Chart Chart { get; set; }
 
         public List<ApplicationUser> Teammates { get; set; }
+
+        public double TotalDistanceComplete { get; set; }
     }
 }

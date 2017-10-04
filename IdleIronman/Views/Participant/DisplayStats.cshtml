@@ -1,7 +1,7 @@
 ﻿@model IdleIronman.ViewModels.TeamStatsListViewModel
 @{
     ViewBag.Title = "DisplayStats";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LayoutForCharts.cshtml";
 }
 
 <h2>DisplayStats</h2>
@@ -34,11 +34,11 @@
                             @record.TeamId
                         </td>
                         <td>
-                            @record.TeamName<br/>
-                            <img src="~/Content/Images/@record.TeamPhotoName" /><br/>
+                            @record.TeamName<br />
+                            <img src="~/Content/Images/@record.TeamPhotoName" /><br />
                             @*@record.Chart.Write(format: "png")*@
-                            <img src="@Url.Action("MakeChart", "Participant", new { model = @Model})"/>
-
+                            @*<img src="@Url.Action("MakeChart", "Participant", new { model = @Model})"/>*@
+                            <div class="progress-bar" role="progressbar" aria-valuenow="@record.TotalDistanceComplete.ToString()" aria-valuemin="0" aria-valuemax="140.6" style="width: @record.TotalDistanceComplete%">@record.TotalDistanceComplete</div>
                         </td>
                         <td>
                             Started: @record.StartDate.ToShortDateString()<br/>
@@ -53,7 +53,8 @@
                         <td>
                             Total Swim: @record.TotalSwimDistance<br/>
                             Total Run: @record.TotalRunDistance<br/>
-                            Total Bike: @record.TotalBikeDistance
+                            Total Bike: @record.TotalBikeDistance<br/>
+                            Total Distance: @record.TotalDistanceComplete
                         </td>
                     </tr>
                 }
