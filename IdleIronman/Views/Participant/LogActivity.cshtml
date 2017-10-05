@@ -7,7 +7,7 @@
 
 <h2>Log Activity</h2>
 
-@using (Html.BeginForm("LogActivity", "Participant"))
+@using (Html.BeginForm("LogActivity", "Participant", new {activityLogVm = @Model}))
 {
     @Html.AntiForgeryToken()
 
@@ -26,8 +26,8 @@
                 }
                 else
                 {
-                    var query = Model.ActivityLog.ActivityDate.ToShortDateString();
-                    @Html.EditorFor(model => query, new { htmlAttributes = new { @class = "form-control" } })
+                    var query = Model.ActivityLog.ActivityDate.ToShortTimeString();
+                    @Html.EditorFor(model => Model.ActivityLog.ActivityDate, new { htmlAttributes = new { @class = "form-control" } })
                 }
                 @Html.ValidationMessageFor(model => model.ActivityLog.ActivityDate, "", new { @class = "text-danger" })
             </div>

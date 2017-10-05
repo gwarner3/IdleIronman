@@ -1,5 +1,7 @@
-﻿@using Microsoft.AspNet.Identity
-@model IdleIronman.ViewModels.AllStatsViewModel
+﻿@using IdleIronman.Models
+@using Microsoft.AspNet.Identity
+@model IdleIronman.ViewModels.TeamStatsListViewModel
+@*@model IdleIronman.ViewModels.AllStatsViewModel*@
 @{
     ViewBag.Title = "IIM - Home";
 }
@@ -13,27 +15,28 @@
 
 
 <div class="row">
+    @*This section will be visible only to authorized users*@
+    @if (User.Identity.IsAuthenticated)
+    {
+        ApplicationDbContext _context = new ApplicationDbContext();
+        var currentViewerId = User.Identity.GetUserId();
+        var currentViewer = _context.Users.Single(u => u.Id == currentViewerId);
+        var usersTeam = _context.Teams.Single(u => u.Id == currentViewer.TeamModelsId);
+        var teamName = usersTeam.Name;
+
+        <h1>@currentViewer.FirstName @currentViewer.LastName - @teamName</h1>
+
+    }
     <h1>Idle Ironman quick rules</h1>
     <ul>
         <li>Register to begin tracking your progress.</li>
         <li>Find a team or take it on solo.</li>
         <li>Run 26.22 miles, swim, 2.4 miles, and bike 112 miles in 30 days!</li>
     </ul>
-    @*This section will be visible only to authorized users*@
-    @if (User.Identity.IsAuthenticated)
-    {
-        <h2>Users Team Name @Model.UsersTeam</h2>
-    }
+    <p>@Html.ActionLink("View all rules", "About", "Home")</p>
 
 
-    @*@foreach (var record in Model.TeamStats)
-    {
-        <p>Team Id: @record.TeamId </p>
-        <p>Team Name: @record.TeamName </p>
-    }*@
-    
-
-
+    <p>The teams below are currently participating in the Idle Ironman</p>
     <table class="table">
         <tr>
             <th>
@@ -56,73 +59,73 @@
 
             </th>
         </tr>
-        @foreach (var item in Model.Teams)
+        @foreach (var item in Model.TeamStats)
         {
             <tr>
                 <td>
-                    @item.Name<br />
-                    <img src="~/Content/Images/@item.LinkToPhoto" />
+                    @item.TeamName<br/>
+                    <img src="~/Content/Images/@item.TeamPhotoName"/>
                 </td>
                 <td>
-                    Started: @item.IronManRuleModels.StartDate.ToShortDateString()
-                    <br />
+                    Started: @item.StartDate.ToShortDateString()
+                    <br/>
                     @{
-                        var durationInDays = item.IronManRuleModels.DurationInDays;
-                        var endDate = item.IronManRuleModels.StartDate.AddDays(durationInDays);
-                        var daysLeft = (endDate - DateTime.Today).TotalDays;
+                        //var durationInDays = item.IronManRuleModels.DurationInDays;
+                        //var endDate = item.IronManRuleModels.StartDate.AddDays(durationInDays);
+                        //var daysLeft = (endDate - DateTime.Today).TotalDays;
 
                     }
-                    Days left: @daysLeft
+                    Days left: @item.DaysLeft
                 </td>
                 <td>
-                    Progress
+                    Miles covered
                     @{
 
-//double? totalSwim = null;
-//double? totalRun = null;
-//double? totalBike = null;
+                        //double? totalSwim = null;
+                        //double? totalRun = null;
+                        //double? totalBike = null;
 
-//var totalDistance = item.TeamTotalSwimDistance.Select(x=>x.
+                        //var totalDistance = item.TeamTotalSwimDistance.Select(x=>x.
 
-//foreach (var actLog in Model.ActivityLog)
-//{
-//    if (actLog.ExerciseTypeModelsId == 3 || actLog.ExerciseTypeModelsId == 6)
-//    {
-//        totalSwim += actLog.Distance;
-//    }
-//    else if (actLog.ExerciseTypeModelsId == 2)
-//    {
+                        //foreach (var actLog in Model.ActivityLog)
+                        //{
+                        //    if (actLog.ExerciseTypeModelsId == 3 || actLog.ExerciseTypeModelsId == 6)
+                        //    {
+                        //        totalSwim += actLog.Distance;
+                        //    }
+                        //    else if (actLog.ExerciseTypeModelsId == 2)
+                        //    {
 
-//    }
-//    else if (actLog.ExerciseTypeModelsId == 3)
-//    {
+                        //    }
+                        //    else if (actLog.ExerciseTypeModelsId == 3)
+                        //    {
 
-//    }
-//}
+                        //    }
+                        //}
                     }
-                    @item.TeamTotalSwimDistance
+                    @item.TotalDistanceComplete
                 </td>
                 <td>
 
                     @*Has @item.Teammates.Count Members*@
                     @foreach (var member in item.Teammates)
                     {
-                        <text>@member.FirstName @member.LastName</text><br />
+                        <text>@member.FirstName @member.LastName</text><br/>
                     }
                 </td>
                 <td>
                     @{
                         if (User.Identity.IsAuthenticated)
                         {
-                            var enddate = item.IronManRuleModels.StartDate.AddDays(item.IronManRuleModels.DurationInDays);
+                            //var enddate = item.IronManRuleModels.StartDate.AddDays(item.IronManRuleModels.DurationInDays);
 
-                            var daysUntilEnd = (enddate - DateTime.Today).TotalDays;
+                            var daysUntilEnd = item.DaysLeft;
 
 
 
                             if (item.Teammates.Count < 3 && User.Identity.IsAuthenticated && daysUntilEnd > 15)
                             {
-                                @Html.ActionLink("Join Team", "JoinTeam", "Participant", new { id = item.Id }, null)
+                                @Html.ActionLink("Join Team", "JoinTeam", "Participant", new {id = item.TeamId}, null)
                             }
 
                         }
@@ -132,7 +135,7 @@
                 </td>
 
             </tr>
-                        }
+        }
     </table>
 </div>
 

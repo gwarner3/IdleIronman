@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using IdleIronman.Helpers;
 using IdleIronman.Models;
 using IdleIronman.ViewModels;
 using Microsoft.AspNet.Identity;
@@ -92,10 +93,10 @@ namespace IdleIronman.Controllers
             //    singleRecord.TeamName = team.Name;
             //    allStatsViewModel.TeamStats.Add(singleRecord);
             //}
+            TeamStatsListViewModel teamstatsList = CreateTeamStatsList.GetTeamStatsList();
 
 
-
-            return View(allStatsViewModel);
+            return View(teamstatsList);
         }
 
         public ActionResult About()

@@ -205,6 +205,7 @@ namespace IdleIronman.Controllers
 
             var activityLog = new ActivityLogModels
             {
+                //////SOmething is happening to the date here
                 ActivityDate = activityViewModel.ActivityLog.ActivityDate,
                 Distance = distance,
                 DurationInMinutes = activityViewModel.ActivityLog.DurationInMinutes,
@@ -222,6 +223,7 @@ namespace IdleIronman.Controllers
             }
             else
             {
+                
                 var activityInLog = _context.ActivityLogs.Single(currentActivity => currentActivity.Id == activityViewModel.ActivityLog.Id);
                 activityInLog.ActivityDate = activityLog.ActivityDate;
                 activityInLog.Distance = activityLog.Distance;

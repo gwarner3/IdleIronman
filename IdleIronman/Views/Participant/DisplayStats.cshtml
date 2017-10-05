@@ -37,7 +37,8 @@
                             @record.TeamName<br />
                             <img src="~/Content/Images/@record.TeamPhotoName" /><br />
                             @*@record.Chart.Write(format: "png")*@
-                            @*<img src="@Url.Action("MakeChart", "Participant", new { model = @Model})"/>*@
+                            @*Working chart code below*@
+                            <img src="@Url.Action("MakeChart", "Participant", new { model = @Model})" />
                             <div class="progress-bar" role="progressbar" aria-valuenow="@record.TotalDistanceComplete.ToString()" aria-valuemin="0" aria-valuemax="140.6" style="width: @record.TotalDistanceComplete%">@record.TotalDistanceComplete</div>
                         </td>
                         <td>
