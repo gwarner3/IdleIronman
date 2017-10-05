@@ -376,9 +376,14 @@ namespace IdleIronman.Controllers
         public ActionResult MakeChart(double swam, double biked, double ran)
         {
             var chartModel = new ParticipantChartViewModel();
-            chartModel.swam = swam;
-            chartModel.biked = bikeId;
-            chartModel.ran = ran;
+
+            var swimPercentComplete = (swam / 2.4) * 100;
+            var runPercentComplete = (ran / 26.2) * 100;
+            var bikePercentComplete = (biked / 112) * 100;
+
+            chartModel.swam = swimPercentComplete;
+            chartModel.biked = bikePercentComplete;
+            chartModel.ran = runPercentComplete;
             return View(chartModel);
         }
     }

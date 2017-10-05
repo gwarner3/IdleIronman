@@ -5,14 +5,17 @@
 }
 
 @{
-    var totalDistanceChart = new Chart(400, 100, ChartTheme.Blue)
-        .AddTitle("Total distance covered")
-        //.AddLegend()
+    var totalDistanceChart = new Chart(400, 200, ChartTheme.Vanilla)
+        .AddTitle("% of distance covered")
+        //.AddLegend("Title", "Name")
+        //.SetXAxis("Title", 0, 3) sets length of data going up
+        .SetYAxis(null, 0, 100) //sets length of data going across
         .AddSeries(
         name: "Distance covered",
         chartType: "bar",
-        xValue: new[] { "1 Distance" },
-        yValues: new[] { @Model.biked.ToString() }).Write();
+        xValue: new[] { "Swam", "Biked", "Ran" },
+        yValues: new[] { @Model.swam, @Model.biked, @Model.ran })
+        .Write();
 
 }
 @DateTime.Today
