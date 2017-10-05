@@ -39,11 +39,19 @@
                             @*@record.Chart.Write(format: "png")*@
                             @*Working chart code below*@
                             @*<img src="@Url.Action("MakeChart", "Participant", new { model = @Model})" />*@
-                            <div class="progress-bar" role="progressbar" aria-valuenow="@record.TotalDistanceComplete.ToString()" aria-valuemin="0" aria-valuemax="140.6" style="width: @record.TotalDistanceComplete%">@record.TotalDistanceComplete</div>
+                            @*<div class="progress-bar" role="progressbar" aria-valuenow="@record.TotalDistanceComplete" aria-valuemin="0" aria-valuemax="140.6" style="width: @record.TotalDistanceComplete%">@record.TotalDistanceComplete</div>*@
+                            @{
+                                var percentComplete = (@record.TotalDistanceComplete / 140.6) * 100;
+                            }
+                            
+                            
+                            @*<div class="progress-bar" role="progressbar" aria-valuenow = @percentComplete aria-valuemin="0" aria-valuemax="100" style="width: @percentComplete%">@record.TotalDistanceComplete</div>*@
                         </td>
                         <td>
                             Started: @record.StartDate.ToShortDateString()<br/>
-                            Days left: @record.DaysLeft
+                            Days left: @record.DaysLeft<br/>
+                            Miles remaining: @{ var milesLeft = 140.6 - record.TotalDistanceComplete;} @milesLeft
+                            @*<div class="progress-bar" role="progressbar" aria-valuenow=@percentComplete aria-valuemin="0" aria-valuemax="100" style="width: @percentComplete%">@record.TotalDistanceComplete</div>*@
                         </td>
                         <td>
                             @foreach (var member in record.Teammates)
@@ -55,7 +63,8 @@
                             Total Swim: @record.TotalSwimDistance<br/>
                             Total Run: @record.TotalRunDistance<br/>
                             Total Bike: @record.TotalBikeDistance<br/>
-                            Total Distance: @record.TotalDistanceComplete
+                            Total Distance: @record.TotalDistanceComplete<br/>
+                            <div class="progress-bar" role="progressbar" aria-valuenow=@percentComplete aria-valuemin="0" aria-valuemax="100" style="width: @percentComplete%">@record.TotalDistanceComplete</div>
                         </td>
                     </tr>
                 }
