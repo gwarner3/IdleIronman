@@ -37,7 +37,8 @@
 
 
     <p>The teams below are currently participating in the Idle Ironman</p>
-    <table class="table">
+    <table class="table" id="homeTable">
+        <thead>
         <tr>
             <th>
                 Team Name and Photo
@@ -59,16 +60,18 @@
 
             </th>
         </tr>
+        </thead>
+        <tbody>
         @foreach (var item in Model.TeamStats)
         {
             <tr>
                 <td>
-                    @item.TeamName<br/>
-                    <img src="~/Content/Images/@item.TeamPhotoName"/>
+                    @item.TeamName<br />
+                    <img src="~/Content/Images/@item.TeamPhotoName" />
                 </td>
                 <td>
                     Started: @item.StartDate.ToShortDateString()
-                    <br/>
+                    <br />
                     @{
                         //var durationInDays = item.IronManRuleModels.DurationInDays;
                         //var endDate = item.IronManRuleModels.StartDate.AddDays(durationInDays);
@@ -110,7 +113,7 @@
                     @*Has @item.Teammates.Count Members*@
                     @foreach (var member in item.Teammates)
                     {
-                        <text>@member.FirstName @member.LastName</text><br/>
+                        <text>@member.FirstName @member.LastName</text><br />
                     }
                 </td>
                 <td>
@@ -125,7 +128,7 @@
 
                             if (item.Teammates.Count < 3 && User.Identity.IsAuthenticated && daysUntilEnd > 15)
                             {
-                                @Html.ActionLink("Join Team", "JoinTeam", "Participant", new {id = item.TeamId}, null)
+                                @Html.ActionLink("Join Team", "JoinTeam", "Participant", new { id = item.TeamId }, null)
                             }
 
                         }
@@ -136,8 +139,19 @@
 
             </tr>
         }
+        </tbody>
     </table>
+
 </div>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            $("#homeTable").DataTable();
+        })
+    </script>
+}
 
 @*@foreach (var participant in Model.ApplicationUsers)
     {
