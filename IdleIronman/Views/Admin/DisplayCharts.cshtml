@@ -5,7 +5,27 @@
     Layout = "~/Views/Shared/_LayoutNoAdds.cshtml";
 }
 
-<h2>Charts</h2>
+<h2>Team total distance charts</h2>
 
-<div id="chart_div"></div>
+<table class="table">
+    
+    @for (int i = 0; i < @Model.TeamStats.Count; i++)
+    {
+        <tr>
+            <td>
+                @Model.TeamStats[i].TeamName<br />
+                Ran: @Model.TeamStats[i].TotalRunDistance<br />
+                Biked: @Model.TeamStats[i].TotalBikeDistance<br />
+                Swam: @Model.TeamStats[i].TotalSwimDistance<br />
+            </td>
+            <td>
+                <img src="@Url.Action("MakeChart", "Admin", new {swam = @Model.TeamStats[i].TotalSwimDistance, biked = @Model.TeamStats[i].TotalBikeDistance, ran = @Model.TeamStats[i].TotalRunDistance, teamName = @Model.TeamStats[i].TeamName})" />
+            </td>
+        </tr>
+    }
+    
+</table>
+
+
+@*<img src="@Url.Action("MakeChart", "Participant", new { swam = @Model.ParticipantTotalSwimDistance, biked = @Model.ParticipantTotalBikedDistance, ran = @Model.ParticipantTotalRunDistance})" />*@
 

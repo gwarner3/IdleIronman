@@ -160,5 +160,18 @@ namespace IdleIronman.Controllers
 
             return View(teamstatsList);
         }
+
+        public ActionResult MakeChart(double swam, double biked, double ran, string teamName)
+        {
+
+            AdminChartViewModel adminChart = new AdminChartViewModel();
+
+            adminChart.swam = swam;
+            adminChart.biked = biked;
+            adminChart.ran = ran;
+            adminChart.teamName = teamName;
+
+            return View(adminChart);
+        }
     }
 }
