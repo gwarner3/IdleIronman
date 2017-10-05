@@ -9,9 +9,9 @@
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
-                    <th>
+                    @*<th>
                         Team ID
-                    </th>
+                    </th>*@
                     <th>
                         Name and photo
                     </th>
@@ -30,15 +30,15 @@
                 @foreach (var record in Model.TeamStats)
                 {
                     <tr>
-                        <td>
+                        @*<td>
                             @record.TeamId
-                        </td>
+                        </td>*@
                         <td>
                             @record.TeamName<br />
                             <img src="~/Content/Images/@record.TeamPhotoName" /><br />
                             @*@record.Chart.Write(format: "png")*@
                             @*Working chart code below*@
-                            <img src="@Url.Action("MakeChart", "Participant", new { model = @Model})" />
+                            @*<img src="@Url.Action("MakeChart", "Participant", new { model = @Model})" />*@
                             <div class="progress-bar" role="progressbar" aria-valuenow="@record.TotalDistanceComplete.ToString()" aria-valuemin="0" aria-valuemax="140.6" style="width: @record.TotalDistanceComplete%">@record.TotalDistanceComplete</div>
                         </td>
                         <td>

@@ -53,7 +53,7 @@ namespace IdleIronman.Helpers
                 currentUser = _context.Users.Single(u => u.Id == currentUserId);
                 teams = (from team in _context.Teams
                          where team.Teammates.Count > 0 &&
-                               team.Id != currentUser.TeamModelsId &&
+                               //team.Id != currentUser.TeamModelsId &&
                                team.IsPrivate == false
                          select team).Include(u => u.TeamApplications)
                     .Include(r => r.IronManRuleModels)

@@ -300,7 +300,7 @@ namespace IdleIronman.Controllers
                 currentUser = _context.Users.Single(u => u.Id == currentUserId);
                 teams = (from team in _context.Teams
                         where team.Teammates.Count > 0 &&
-                              team.Id != currentUser.TeamModelsId &&
+                              //team.Id != currentUser.TeamModelsId &&
                               team.IsPrivate == false
                         select team).Include(u => u.TeamApplications)
                     .Include(r => r.IronManRuleModels)
@@ -373,10 +373,12 @@ namespace IdleIronman.Controllers
             return View(teamStatsListed);
         }
 
-        public ActionResult MakeChart(TeamStatsListViewModel model)
+        public ActionResult MakeChart(double swam, double biked, double ran)
         {
-            var chartModel = new TeamStatsListViewModel();
-            chartModel = model;
+            var chartModel = new ParticipantChartViewModel();
+            chartModel.swam = swam;
+            chartModel.biked = bikeId;
+            chartModel.ran = ran;
             return View(chartModel);
         }
     }

@@ -290,6 +290,7 @@
     <Compile Include="ViewModels\AdminChartsViewModel.cs" />
     <Compile Include="ViewModels\AdminViewModel.cs" />
     <Compile Include="ViewModels\AllStatsViewModel.cs" />
+    <Compile Include="ViewModels\ParticipantChartViewModel.cs" />
     <Compile Include="ViewModels\ParticpantStatsViewModel.cs" />
     <Compile Include="ViewModels\TeamStatsListViewModel.cs" />
     <Compile Include="ViewModels\TeamStatsViewModel.cs" />

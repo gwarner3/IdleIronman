@@ -17,6 +17,7 @@
 
 <p>Days remaining: @Model.DaysUntilEnd </p>
 
+
 <h3>Logged Exercises</h3>
 <table class="table">
     <tr>
@@ -61,6 +62,8 @@
         </tr>
     }
 </table>
+
+<img src="@Url.Action("MakeChart", "Participant", new { swam = @Model.ParticipantTotalSwimDistance, biked = @Model.ParticipantTotalBikedDistance, ran = @Model.ParticipantTotalRunDistance})" />
 
 @*<p>
     <img src="@Url.Action("ShowChart")"/>

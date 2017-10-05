@@ -1,9 +1,8 @@
-﻿@model IdleIronman.ViewModels.TeamStatsListViewModel
+﻿@model IdleIronman.ViewModels.ParticipantChartViewModel
 
 @{
     Layout = null;
 }
-
 
 @{
     var totalDistanceChart = new Chart(400, 100, ChartTheme.Blue)
@@ -13,7 +12,7 @@
         name: "Distance covered",
         chartType: "bar",
         xValue: new[] { "1 Distance" },
-        yValues: new[] { "140" }).Write();
+        yValues: new[] { @Model.biked.ToString() }).Write();
 
 }
 @DateTime.Today
