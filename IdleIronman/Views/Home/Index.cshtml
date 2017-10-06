@@ -27,13 +27,17 @@
         <h1>@currentViewer.FirstName @currentViewer.LastName - @teamName</h1>
 
     }
-    <h1>Idle Ironman quick rules</h1>
-    <ul>
-        <li>Register to begin tracking your progress.</li>
-        <li>Find a team or take it on solo.</li>
-        <li>Run 26.22 miles, swim, 2.4 miles, and bike 112 miles in 30 days!</li>
-    </ul>
-    <p>@Html.ActionLink("View all rules", "About", "Home")</p>
+    else
+    {
+        <h1>Idle Ironman quick rules</h1>
+        <ul>
+            <li>Register to begin tracking your progress.</li>
+            <li>Find a team or take it on solo.</li>
+            <li>Run 26.22 miles, swim, 2.4 miles, and bike 112 miles in 30 days!</li>
+        </ul>
+        <p>@Html.ActionLink("View all rules", "About", "Home")</p>
+    }
+    
 
 
     <p>The teams below are currently participating in the Idle Ironman</p>
@@ -67,7 +71,7 @@
             <tr>
                 <td>
                     @item.TeamName<br />
-                    <img src="~/Content/Images/@item.TeamPhotoName" />
+                    <img src="~/Content/Images/@item.TeamPhotoName" /><br />
                 </td>
                 <td>
                     Started: @item.StartDate.ToShortDateString()

@@ -275,6 +275,10 @@
     <Compile Include="Migrations\201710041424596_AddedApplicationUserToDbCOntext.Designer.cs">
       <DependentUpon>201710041424596_AddedApplicationUserToDbCOntext.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710061447487_DisplayForExerciseSet.cs" />
+    <Compile Include="Migrations\201710061447487_DisplayForExerciseSet.Designer.cs">
+      <DependentUpon>201710061447487_DisplayForExerciseSet.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ActivityLogModels.cs" />
@@ -627,6 +631,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710041424596_AddedApplicationUserToDbCOntext.resx">
       <DependentUpon>201710041424596_AddedApplicationUserToDbCOntext.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710061447487_DisplayForExerciseSet.resx">
+      <DependentUpon>201710061447487_DisplayForExerciseSet.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

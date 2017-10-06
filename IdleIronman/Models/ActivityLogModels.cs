@@ -21,6 +21,7 @@ namespace IdleIronman.Models
 
         public ExerciseTypeModels ExerciseTypeModels { get; set; }
 
+        [Display(Name = "Exercise Type")]
         public int ExerciseTypeModelsId { get; set; }
 
         public ApplicationUser ApplicationUser { get; set; }

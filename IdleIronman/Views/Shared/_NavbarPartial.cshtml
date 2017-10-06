@@ -18,9 +18,9 @@
         <li>@Html.ActionLink("My Activity", "Index", "Participant", new {id = userId}, null)</li>
         <li>@Html.ActionLink("Stats", "DisplayStats", "Participant")</li>
         <li>@Html.ActionLink("Log Activity", "LogActivity", "Participant")</li>
-        <li>@Html.ActionLink("All IIM Stats", "Index", "Participant")</li>
+        @*<li>@Html.ActionLink("All IIM Stats", "Index", "Participant")</li>*@
         <li>@Html.ActionLink("Rules", "About", "Home")</li>
-        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+        @*<li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
     </ul>
     @Html.Partial("_LoginPartial")
 }
@@ -35,7 +35,7 @@
         <li>@Html.ActionLink("Stats", "DisplayStats", "Participant")</li>
         <li>@Html.ActionLink("Log Activity", "LogActivity", "Participant")</li>
         <li>@Html.ActionLink("Rules", "About", "Home")</li>
-        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+        @*<li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
     </ul>
     @Html.Partial("_LoginPartial")
 }
@@ -46,8 +46,8 @@
     <ul class="nav navbar-nav">
         <li>@Html.ActionLink("Home", "Index", "Admin")</li>
         <li>@Html.ActionLink("IIM data charts", "DisplayCharts", "Admin")</li>
-        <li>@Html.ActionLink("Rules", "About", "Home")</li>
-        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+        @*<li>@Html.ActionLink("Rules", "About", "Home")</li>*@
+        @*<li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
     </ul>
     @Html.Partial("_LoginPartial")
 }

@@ -62,7 +62,7 @@ namespace IdleIronman.Helpers
             }
             else
             {
-                teams = _context.Teams.Where(c => c.Teammates.Count > 0).Select(t => t)
+                teams = _context.Teams.Where(c => c.Teammates.Count > 0 && c.IsPrivate == false).Select(t => t)
                     .Include(r => r.IronManRuleModels)
                     .Include(m => m.Teammates)
                     .Include(td => td.TeamTotalSwimDistance).ToList();

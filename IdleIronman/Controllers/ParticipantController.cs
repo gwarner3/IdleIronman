@@ -370,6 +370,10 @@ namespace IdleIronman.Controllers
                 teamStatsListed.TeamStats.Add(teamRecord);
             }
 
+
+
+
+            ////This passes correct photo
             return View(teamStatsListed);
         }
 
