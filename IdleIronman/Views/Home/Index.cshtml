@@ -1,19 +1,9 @@
 ﻿@using IdleIronman.Models
 @using Microsoft.AspNet.Identity
 @model IdleIronman.ViewModels.TeamStatsListViewModel
-@*@model IdleIronman.ViewModels.AllStatsViewModel*@
 @{
     ViewBag.Title = "IIM - Home";
 }
-
-@*<div class="jumbotron">
-        <h1>General Rules</h1>
-        <p class="lead">Idle Iron Man rules summarized here</p>
-        <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-    </div>*@
-
-
-
 <div class="row">
     @*This section will be visible only to authorized users*@
     @if (User.Identity.IsAuthenticated)
@@ -76,45 +66,14 @@
                 <td>
                     Started: @item.StartDate.ToShortDateString()
                     <br />
-                    @{
-                        //var durationInDays = item.IronManRuleModels.DurationInDays;
-                        //var endDate = item.IronManRuleModels.StartDate.AddDays(durationInDays);
-                        //var daysLeft = (endDate - DateTime.Today).TotalDays;
-
-                    }
                     Days left: @item.DaysLeft
                 </td>
                 <td>
                     Miles covered
-                    @{
-
-                        //double? totalSwim = null;
-                        //double? totalRun = null;
-                        //double? totalBike = null;
-
-                        //var totalDistance = item.TeamTotalSwimDistance.Select(x=>x.
-
-                        //foreach (var actLog in Model.ActivityLog)
-                        //{
-                        //    if (actLog.ExerciseTypeModelsId == 3 || actLog.ExerciseTypeModelsId == 6)
-                        //    {
-                        //        totalSwim += actLog.Distance;
-                        //    }
-                        //    else if (actLog.ExerciseTypeModelsId == 2)
-                        //    {
-
-                        //    }
-                        //    else if (actLog.ExerciseTypeModelsId == 3)
-                        //    {
-
-                        //    }
-                        //}
-                    }
+                    
                     @item.TotalDistanceComplete
                 </td>
                 <td>
-
-                    @*Has @item.Teammates.Count Members*@
                     @foreach (var member in item.Teammates)
                     {
                         <text>@member.FirstName @member.LastName</text><br />
@@ -124,11 +83,8 @@
                     @{
                         if (User.Identity.IsAuthenticated)
                         {
-                            //var enddate = item.IronManRuleModels.StartDate.AddDays(item.IronManRuleModels.DurationInDays);
 
                             var daysUntilEnd = item.DaysLeft;
-
-
 
                             if (item.Teammates.Count < 3 && User.Identity.IsAuthenticated && daysUntilEnd > 15)
                             {
@@ -156,32 +112,3 @@
         })
     </script>
 }
-
-@*@foreach (var participant in Model.ApplicationUsers)
-    {
-        <p>Name @participant.FirstName @participant.LastName</p>
-        <p>Swim</p>
-
-    }*@
-
-@*<div class="row">
-        <div class="col-md-4">
-            <h2>Getting started</h2>
-            <p>
-                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-                enables a clean separation of concerns and gives you full control over markup
-                for enjoyable, agile development.
-            </p>
-            <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-        </div>
-        <div class="col-md-4">
-            <h2>Get more libraries</h2>
-            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-            <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-        </div>
-        <div class="col-md-4">
-            <h2>Web Hosting</h2>
-            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-            <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-        </div>
-    </div>*@

@@ -36,11 +36,6 @@ namespace IdleIronman.Helpers
         }
         public static TeamStatsListViewModel GetTeamStatsList()
         {
-            
-
-            //var swimId = 3;
-            //var bikeId = 2;
-            //var runId = 1;
             List<TeamModels> teams;
             ApplicationUser currentUser;
             TeamStatsViewModel teamRecordsViewModel = new TeamStatsViewModel();
@@ -53,7 +48,6 @@ namespace IdleIronman.Helpers
                 currentUser = _context.Users.Single(u => u.Id == currentUserId);
                 teams = (from team in _context.Teams
                          where team.Teammates.Count > 0 &&
-                               //team.Id != currentUser.TeamModelsId &&
                                team.IsPrivate == false
                          select team).Include(u => u.TeamApplications)
                     .Include(r => r.IronManRuleModels)
@@ -67,8 +61,6 @@ namespace IdleIronman.Helpers
                     .Include(m => m.Teammates)
                     .Include(td => td.TeamTotalSwimDistance).ToList();
             }
-
-
 
             for (int i = 0; i < teams.Count; i++)
             {
@@ -98,24 +90,19 @@ namespace IdleIronman.Helpers
                 {
                     var thisLog = teamsLog[x];
 
-                    //distanceComplete = 0;
-
                     foreach (ActivityLogModels t in thisLog)
                     {
                         if (t.ExerciseTypeModelsId == swimId || t.ExerciseTypeModelsId == rowId || t.ExerciseTypeModelsId == waterAerobicsId)
                         {
                             teamRecord.TotalSwimDistance += (double)t.Distance;
-                            //distanceComplete += teamRecord.TotalSwimDistance;
                         }
                         else if (t.ExerciseTypeModelsId == bikeId || t.ExerciseTypeModelsId == spinId)
                         {
                             teamRecord.TotalBikeDistance += (double)t.Distance;
-                            //distanceComplete += teamRecord.TotalBikeDistance;
                         }
                         else if (t.ExerciseTypeModelsId == runId)
                         {
                             teamRecord.TotalRunDistance += (double)t.Distance;
-                            //distanceComplete += teamRecord.TotalRunDistance;
                         }
                     }
                 }

@@ -178,7 +178,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\ActivityLogDateIsWithinRange.cs" />
     <Compile Include="Helpers\CalculateExerciseDistance.cs" />
     <Compile Include="Helpers\CreateTeamStatsList.cs" />
     <Compile Include="Helpers\RoleNames.cs" />
