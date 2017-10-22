@@ -83,20 +83,6 @@ namespace IdleIronman.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    //if (Roles.IsUserInRole("CanManagePersonalData"))
-                    //{
-                    //    return RedirectToAction("Index", "Participant");
-                    //}
-                    //if (_userManager.IsInRole("CanManagePersonalData"))
-
-                    //var currentUser = User;
-                    //var userId = User.Identity.GetUserId();
-                    //var currentUserRole = _userManager.GetRoles(userId).First();
-
-                    //if (currentUserRole == "CanManagePersonalData")
-                    //{
-                    //    return RedirectToAction("Index", "Participant");
-                    //}
 
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
@@ -171,7 +157,7 @@ namespace IdleIronman.Controllers
             if (ModelState.IsValid)
             {
 
-                //creatr IronManRules for this user
+                //create IronManRules for this user
                 var ironManRules = new IronManRuleModels
                 {
                     StartDate = model.StartDate,
@@ -189,8 +175,8 @@ namespace IdleIronman.Controllers
                 };
                 _context.Teams.Add(team);
                 _context.SaveChanges();
-                //get the Id from the newly created Team and save it in the AspNetUsers Table
 
+                //get the Id from the newly created Team and save it in the AspNetUsers Table
                 var user = new ApplicationUser
                 {
                     UserName = model.Email,
@@ -203,6 +189,8 @@ namespace IdleIronman.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    //Seeding users for new installs. Incrementally comment out each section and run application.
+                    
                     //Temp Code to add Administrative user role
                     //var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
                     //var roleManager = new RoleManager<IdentityRole>(roleStore);
@@ -513,20 +501,6 @@ namespace IdleIronman.Controllers
 
         private ActionResult RedirectToLocal(string returnUrl)
         {
-            //if (Roles.IsUserInRole("CanManagePersonalData"))
-            //{
-            //    return RedirectToAction("Index", "Participant");
-            //}
-
-            //var currentUser = User;
-            //var userId = currentUser.Identity.GetUserId();
-            //var currentUserRole = _userManager.GetRoles(userId).First();
-
-            //if (currentUserRole == "CanManagePersonalData")
-            //{
-            //    return RedirectToAction("Index", "Participant");
-            //}
-
             if (Url.IsLocalUrl(returnUrl))
             {
                 return Redirect(returnUrl);
