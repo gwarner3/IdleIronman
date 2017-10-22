@@ -9,9 +9,6 @@
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
-                    @*<th>
-                        Team ID
-                    </th>*@
                     <th>
                         Name and photo
                     </th>
@@ -30,28 +27,20 @@
                 @foreach (var record in Model.TeamStats)
                 {
                     <tr>
-                        @*<td>
-                            @record.TeamId
-                        </td>*@
+
                         <td>
                             @record.TeamName<br />
                             <img src="~/Content/Images/@record.TeamPhotoName" /><br />
-                            @*@record.Chart.Write(format: "png")*@
-                            @*Working chart code below*@
-                            @*<img src="@Url.Action("MakeChart", "Participant", new { model = @Model})" />*@
-                            @*<div class="progress-bar" role="progressbar" aria-valuenow="@record.TotalDistanceComplete" aria-valuemin="0" aria-valuemax="140.6" style="width: @record.TotalDistanceComplete%">@record.TotalDistanceComplete</div>*@
+                            
                             @{
                                 var percentComplete = (@record.TotalDistanceComplete / 140.6) * 100;
-                            }
-                            
-                            
-                            @*<div class="progress-bar" role="progressbar" aria-valuenow = @percentComplete aria-valuemin="0" aria-valuemax="100" style="width: @percentComplete%">@record.TotalDistanceComplete</div>*@
+                            }          
                         </td>
                         <td>
                             Started: @record.StartDate.ToShortDateString()<br/>
                             Days left: @record.DaysLeft<br/>
                             Miles remaining: @{ var milesLeft = 140.6 - record.TotalDistanceComplete;} @milesLeft
-                            @*<div class="progress-bar" role="progressbar" aria-valuenow=@percentComplete aria-valuemin="0" aria-valuemax="100" style="width: @percentComplete%">@record.TotalDistanceComplete</div>*@
+                            
                         </td>
                         <td>
                             @foreach (var member in record.Teammates)

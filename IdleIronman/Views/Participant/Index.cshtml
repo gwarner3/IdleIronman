@@ -13,8 +13,6 @@
 
 <p>Ran: @Model.ParticipantTotalRunDistance miles</p>
 
-@*<p>Started: @Model.IronManRules.StartDate.ToShortDateString()</p>*@
-
 <p>Days remaining: @Model.DaysUntilEnd </p>
 
 
@@ -77,26 +75,4 @@
         })
     </script>
 }
-
-@*<p>
-    <img src="@Url.Action("ShowChart")"/>
-</p>*@
-
-
-@*@{
-    var progressChart = new Chart(width:400, height: 400)
-        .AddTitle("Exercise Progress")
-        .AddSeries(
-        name: "Progress",
-        xValue: new[] { "Swim", "Bike", "Run" },
-        yValues: new[] { @Model.ParticipantTotalSwimDistance, @Model.ParticipantTotalBikedDistance, @Model.ParticipantTotalRunDistance })
-        .Write();
-}*@
-
-
-  
-@*@Html.ActionLink("Edit", "Edit", new { id=item.Id }) |*@
-    @*@Html.ActionLink("Update Info", "UpdatePickUpDay", new { id = item.Id }) |
-    @Html.ActionLink("Details", "Details", new { id = item.Id }) |*@
-    @*@Html.ActionLink("Delete", "Delete", new { id=item.Id })*@
   
