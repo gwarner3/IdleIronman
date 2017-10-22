@@ -146,17 +146,7 @@ namespace IdleIronman.Controllers
 
         public ActionResult DisplayCharts()
         {
-
             TeamStatsListViewModel teamstatsList = CreateTeamStatsList.GetTeamStatsList();
-
-            //JsonResult chartData = new JsonResult();
-            //var jsonSerializer = new JavaScriptSerializer();
-            //var chartData2 = jsonSerializer.Serialize(teamstatsList);
-
-
-
-            
-
 
             return View(teamstatsList);
         }
