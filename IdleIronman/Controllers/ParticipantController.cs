@@ -22,14 +22,12 @@ namespace IdleIronman.Controllers
         private int waterAerobicsId;
         private int spinId;
         private int rowId;
-        private double distanceComplete;
         private CalculateExerciseDistance _distanceCalculator;
 
         public ParticipantController()
         {
             _context = new ApplicationDbContext();
             currentUser = new ApplicationUser();
-            distanceComplete = new double();
             swimId = 3;
             bikeId = 2;
             runId = 1;
@@ -78,10 +76,7 @@ namespace IdleIronman.Controllers
             var usersTeam = (from team in _context.Teams
                 where  team.Id == currentUser.TeamModelsId
                 select team.Name).ToString();
-
-
             
-            //must figure out way to remove magic int 3
             var totalSwimDistance = (from participant in _context.ActivityLogs
                 where participant.ExerciseTypeModelsId == swimId &&
                 participant.ApplicationUserId == currentUserId
@@ -205,7 +200,6 @@ namespace IdleIronman.Controllers
 
             var activityLog = new ActivityLogModels
             {
-                //////SOmething is happening to the date here
                 ActivityDate = activityViewModel.ActivityLog.ActivityDate,
                 Distance = distance,
                 DurationInMinutes = activityViewModel.ActivityLog.DurationInMinutes,
@@ -270,18 +264,6 @@ namespace IdleIronman.Controllers
             return View();
         }
 
-        //public ActionResult ShowChart()
-        //{
-        //        var progressChart = new Chart(width: 400, height: 400)
-        //            .AddTitle("Exercise Progress")
-        //            .AddSeries(
-        //                name: "Progress",
-        //                xValue: new[] { "Swim", "Bike", "Run" },
-        //                yValues: new[] { ParticipantTotalSwimDistance, ParticipantTotalBikedDistance, ParticipantTotalRunDistance })
-        //            .Write();
-
-        //    return File(progressChart, "image/bytes");
-        //}
         public ActionResult DisplayStats()
         {
 
@@ -300,7 +282,6 @@ namespace IdleIronman.Controllers
                 currentUser = _context.Users.Single(u => u.Id == currentUserId);
                 teams = (from team in _context.Teams
                         where team.Teammates.Count > 0 &&
-                              //team.Id != currentUser.TeamModelsId &&
                               team.IsPrivate == false
                         select team).Include(u => u.TeamApplications)
                     .Include(r => r.IronManRuleModels)
@@ -345,33 +326,25 @@ namespace IdleIronman.Controllers
                 {
                     var thisLog = teamsLog[x];
 
-                    //distanceComplete = 0;
-
                     foreach (ActivityLogModels t in thisLog)
                     {
                         if (t.ExerciseTypeModelsId == swimId || t.ExerciseTypeModelsId == rowId || t.ExerciseTypeModelsId == waterAerobicsId)
                         {
                             teamRecord.TotalSwimDistance += (double) t.Distance;
-                            //distanceComplete += teamRecord.TotalSwimDistance;
                         }
                         else if (t.ExerciseTypeModelsId == bikeId || t.ExerciseTypeModelsId == spinId)
                         {
                             teamRecord.TotalBikeDistance += (double) t.Distance;
-                            //distanceComplete += teamRecord.TotalBikeDistance;
                         }
                         else if (t.ExerciseTypeModelsId == runId)
                         {
                             teamRecord.TotalRunDistance += (double) t.Distance;
-                            //distanceComplete += teamRecord.TotalRunDistance;
                         }
                     }
                 }
                 teamRecord.TotalDistanceComplete = teamRecord.TotalSwimDistance + teamRecord.TotalBikeDistance + teamRecord.TotalRunDistance;
                 teamStatsListed.TeamStats.Add(teamRecord);
             }
-
-
-
 
             ////This passes correct photo
             return View(teamStatsListed);
@@ -392,13 +365,3 @@ namespace IdleIronman.Controllers
         }
     }
 }
-//var totalDistanceChart = new Chart(200, 200, ChartTheme.Blue)
-//    .AddTitle("Total distance covered")
-//    .AddLegend()
-//    .AddSeries(
-//    name: "Distance covered",
-//    chartType: "bar",
-//    xValue: new[] {"1 Distance", "2 Distance"},
-//    yValues: new[] {"126", "63"});
-//teamRecord.Chart = totalDistanceChart;
-

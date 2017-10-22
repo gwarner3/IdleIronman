@@ -32,11 +32,11 @@ namespace IdleIronman.Controllers
             
 
             joiner.TeamModelsId = application.TeamModelsId;
+
             //Changing role
             var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(_context));
             UserManager.AddToRole(joiner.Id, RoleNames.CanManagePersonalData);
             UserManager.RemoveFromRole(joiner.Id, RoleNames.CanManageTeamData);
-
 
             //Make changes to the application so it does not appear in list anymore
             application.IsApproved = true;
@@ -63,17 +63,6 @@ namespace IdleIronman.Controllers
 
                 _context.SaveChanges();
 
-                //var team = _context.
-
-                // save the image path path to the database or you can send image
-                // directly to database
-                // in-case if you want to store byte[] ie. for DB
-                //using (MemoryStream ms = new MemoryStream())
-                //{
-                //    file.InputStream.CopyTo(ms);
-                //    byte[] array = ms.GetBuffer();
-                //}
-
             }
             // after successfully uploading redirect the user
             return RedirectToAction("Index", "Manage");
@@ -83,14 +72,6 @@ namespace IdleIronman.Controllers
         {
             //change users team id and role to participant
             var application = _context.TeamApplications.Single(a => a.Id == id);
-            //var joiner = _context.Users.Single(j => j.Id == application.ApplicationUserId);
-
-
-            //joiner.TeamModelsId = id;
-            //Changing role
-            //var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(_context));
-            //UserManager.AddToRole(joiner.Id, RoleNames.CanManagePersonalData);
-
 
             //Make changes to the application so it does not appear in list anymore
             application.IsApproved = false;
